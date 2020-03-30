@@ -1,5 +1,7 @@
 package com.quyum.hyppe.ui.login.activity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -29,6 +31,13 @@ public class LoginAndRegisterActivity extends BaseActivity {
     ViewPager viewPager;
     private List<BaseFragment> fragmentList;
     private String[] tabTitle = {"Sign in", "Sign up"};
+
+    public static void start(Context context) {
+        Intent intent = new Intent(context, LoginAndRegisterActivity.class);
+        //防止多个登录页面
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(intent);
+    }
 
     @Override
     protected int getLayoutId() {

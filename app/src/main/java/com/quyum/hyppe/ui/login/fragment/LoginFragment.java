@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.quyum.hyppe.R;
 import com.quyum.hyppe.base.BaseFragment;
+import com.quyum.hyppe.ui.home.activity.MainActivity;
 import com.quyum.hyppe.ui.login.activity.ForgetActivity;
 import com.quyum.hyppe.utils.ToastUtils;
 import com.quyum.hyppe.weight.TitleBar;
@@ -83,14 +84,15 @@ public class LoginFragment extends BaseFragment {
                 startActivity(new Intent(mActivity, ForgetActivity.class));
                 break;
             case R.id.login_bt:
-                if (TextUtils.isEmpty(mobileEt.getText().toString())) {
-                    ToastUtils.showToast("请输入手机号");
-                    return;
-                }
-                if (TextUtils.isEmpty(psEt.getText().toString())) {
-                    ToastUtils.showToast("请输入密码");
-                    return;
-                }
+//                if (TextUtils.isEmpty(mobileEt.getText().toString())) {
+//                    ToastUtils.showToast("请输入手机号");
+//                    return;
+//                }
+//                if (TextUtils.isEmpty(psEt.getText().toString())) {
+//                    ToastUtils.showToast("请输入密码");
+//                    return;
+//                }
+                startActivity(new Intent(mActivity, MainActivity.class));
                 break;
         }
     }

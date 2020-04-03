@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:fitsSystemWindows="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50.5dp"
+        android:orientation="vertical">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#EEEEEE" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center_vertical">
+
+            <com.quyum.hyppe.utils.TextEditTextView
+                android:id="@+id/content_et"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="15dp"
+                android:layout_weight="1"
+                android:background="@null"
+                android:hint="Don't you want to say something?"
+                android:textColor="@color/black"
+                android:textColorHint="@color/translucent_black"
+                android:textSize="14sp" />
+
+            <ImageView
+                android:id="@+id/at_iv"
+                android:layout_width="15dp"
+                android:layout_height="22dp"
+                android:layout_marginLeft="15dp"
+                android:src="@drawable/icon_pinglun" />
+
+            <ImageView
+                android:id="@+id/emoji_iv"
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="21dp"
+                android:src="@drawable/icon_pinglun_biaoqing" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

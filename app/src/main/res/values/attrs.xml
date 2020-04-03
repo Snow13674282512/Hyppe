@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="SlidingScaleTabLayout">
+        <!-- indicator -->
+        <attr name="tl_indicator_color" />
+        <attr name="tl_indicator_height" />
+        <attr name="tl_indicator_width" />
+        <attr name="tl_indicator_margin_left" />
+        <attr name="tl_indicator_margin_top" />
+        <attr name="tl_indicator_margin_right" />
+        <attr name="tl_indicator_margin_bottom" />
+        <attr name="tl_indicator_corner_radius" />
+        <attr name="tl_indicator_gravity" />
+        <attr name="tl_indicator_style" />
+        <attr name="tl_indicator_width_equal_title" />
+
+        <!-- underline -->
+        <attr name="tl_underline_color" />
+        <attr name="tl_underline_height" />
+        <attr name="tl_underline_gravity" />
+
+        <!-- divider -->
+        <attr name="tl_divider_color" />
+        <attr name="tl_divider_width" />
+        <attr name="tl_divider_padding" />
+
+        <!-- tab -->
+        <attr name="tl_tab_padding" />
+        <attr name="tl_tab_space_equal" />
+        <attr name="tl_tab_width" />
+        <attr name="tl_tab_marginTop" />
+        <attr name="tl_tab_marginBottom" />
+        <attr name="tl_tab_gravity" />
+
+        <!-- title -->
+        <attr name="tl_textSelectSize" />
+        <attr name="tl_textUnSelectSize" />
+        <attr name="tl_textSelectColor" />
+        <attr name="tl_textUnSelectColor" />
+        <attr name="tl_textBold" />
+        <attr name="tl_textAllCaps" />
+
+        <!-- 是否开启文字的图片镜像 -->
+        <attr name="tl_openTextDmg" format="boolean" />
+
+    </declare-styleable>
+
+    <!-- 设置tab的上下间距 -->
+    <attr name="tl_tab_marginTop" format="dimension" />
+    <attr name="tl_tab_marginBottom" format="dimension" />
+
+    <!-- tab的位置 -->
+    <attr name="tl_tab_gravity" format="enum">
+        <enum name="Top" value="0" />
+        <enum name="Bottom" value="1" />
+        <enum name="Center" value="2" />
+    </attr>
+
+    <!-- title -->
+    <!-- 设置字体大小 -->
+    <attr name="tl_textSize" format="dimension" />
+    <attr name="tl_textSelectSize" format="dimension" />
+    <attr name="tl_textUnSelectSize" format="dimension" />
+    <!-- 设置字体选中颜色 -->
+    <attr name="tl_textSelectColor" format="color" />
+    <!-- 设置字体未选中颜色 -->
+    <attr name="tl_textUnSelectColor" format="color" />
+    <!-- 设置字体加粗 -->
+    <attr name="tl_textBold" format="enum">
+        <enum name="NONE" value="0" />
+        <enum name="SELECT" value="1" />
+        <enum name="BOTH" value="2" />
+    </attr>
+</resources>

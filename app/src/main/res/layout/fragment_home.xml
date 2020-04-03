@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="22dp"
+        android:layout_marginLeft="14dp"
+        android:layout_marginTop="44dp"
+        android:layout_marginRight="14dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/left_iv"
+            android:layout_width="16dp"
+            android:layout_height="14dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/icon_shouye_wode" />
+
+        <com.quyum.hyppe.weight.SlidingScaleTabLayout.SlidingScaleTabLayout
+            android:id="@+id/tab_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="30dp"
+            app:tl_indicator_height="0dp"
+            app:tl_openTextDmg="true"
+            app:tl_tab_gravity="Bottom"
+            app:tl_textBold="SELECT"
+            app:tl_textSelectColor="@color/white"
+            app:tl_textSelectSize="16sp"
+            app:tl_textUnSelectColor="@color/white"
+            app:tl_textUnSelectSize="12sp" />
+
+        <ImageView
+            android:id="@+id/search_iv"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/icon_shouye_sousuo" />
+    </RelativeLayout>
+</RelativeLayout>

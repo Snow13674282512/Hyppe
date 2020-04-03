@@ -1,11 +1,7 @@
 package com.quyum.hyppe.base;
 
 import android.app.Application;
-import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.os.Handler;
 import android.os.StrictMode;
@@ -36,6 +32,7 @@ public class MyApplication extends Application {
     public static boolean startFrist = false;//是否启动过
     private static Context context;
     private static Handler mHandler;//主线程Handler
+    public static Boolean isAtPlayer = false;
 
     public static Context getContext() {
         return context;

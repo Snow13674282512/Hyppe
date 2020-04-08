@@ -21,11 +21,9 @@ public class EmojisPopWindow {
     private Context context;
     private PopEmojisAdapter giftAdapter;
     private View linearLayout;
-    private TextView textView;
 
-    public EmojisPopWindow(View linearLayout, Context context, TextView textView) {
+    public EmojisPopWindow(View linearLayout, Context context) {
         this.linearLayout = linearLayout;
-        this.textView = textView;
         this.context = context;
         View contentView = LayoutInflater.from(context).inflate(R.layout.pop_emojis, null);
         handleNation(contentView);
@@ -57,7 +55,6 @@ public class EmojisPopWindow {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 customPopWindow.dissmiss();
-                textView.setText(String.valueOf(Integer.parseInt(textView.getText().toString()) + 1));
                 BigEmojisWindow bigEmojisWindow = new BigEmojisWindow(linearLayout, context, ((EmojisBean.DataBean) adapter.getData().get(position)).drawable);
                 new Handler().postDelayed(new Runnable() {
 

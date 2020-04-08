@@ -3,10 +3,7 @@ package com.quyum.hyppe.ui.home.activity;
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.os.Build;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -14,7 +11,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.core.app.ActivityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -54,6 +50,8 @@ import java.util.Map;
 import butterknife.BindView;
 import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
+import io.reactivex.Observer;
+import io.reactivex.disposables.Disposable;
 
 import static com.quyum.hyppe.utils.ToastUtils.showToast;
 
@@ -82,7 +80,6 @@ public class MainActivity extends BaseActivity {
     @BindView(R.id.main_rl)
     RelativeLayout mainRl;
     private List<BaseFragment> fragmentList;
-    private boolean bPermission = false;
     private SDKOptions config;
 
     public static void start(Context context) {
@@ -94,38 +91,6 @@ public class MainActivity extends BaseActivity {
         intent.putExtra("bundle", bundle);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         context.startActivity(intent);
-    }
-
-    private boolean checkPublishPermission() {
-        if (Build.VERSION.SDK_INT >= 23) {
-            List<String> permissions = new ArrayList<>();
-            if (PackageManager.PERMISSION_GRANTED != ActivityCompat.checkSelfPermission(MainActivity.this,
-                    Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-                permissions.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
-            }
-            if (PackageManager.PERMISSION_GRANTED != ActivityCompat.checkSelfPermission(MainActivity.this,
-                    Manifest.permission.CAMERA)) {
-                permissions.add(Manifest.permission.CAMERA);
-            }
-            if (PackageManager.PERMISSION_GRANTED != ActivityCompat.checkSelfPermission(MainActivity.this,
-                    Manifest.permission.READ_PHONE_STATE)) {
-                permissions.add(Manifest.permission.READ_PHONE_STATE);
-            }
-            if (PackageManager.PERMISSION_GRANTED != ActivityCompat.checkSelfPermission(MainActivity.this,
-                    Manifest.permission.ACCESS_COARSE_LOCATION)) {
-                permissions.add(Manifest.permission.ACCESS_COARSE_LOCATION);
-            }
-            if (PackageManager.PERMISSION_GRANTED != ActivityCompat.checkSelfPermission(MainActivity.this,
-                    Manifest.permission.ACCESS_FINE_LOCATION)) {
-                permissions.add(Manifest.permission.ACCESS_FINE_LOCATION);
-            }
-            if (permissions.size() != 0) {
-                ActivityCompat.requestPermissions(MainActivity.this, (String[]) permissions.toArray(new String[0]),
-                        WRITE_PERMISSION_REQ_CODE);
-                return false;
-            }
-        }
-        return true;
     }
 
     @Override
@@ -172,7 +137,7 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        if (MyApplication.isAtPlayer) {
+        if (MyApplication.isAtHome) {
             EventBus.getDefault().post(new PlayerStopEvent());
         }
     }
@@ -180,30 +145,48 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if (MyApplication.isAtPlayer) {
+        if (MyApplication.isAtHome) {
             EventBus.getDefault().post(new PlayerStartEvent());
         }
     }
 
     @Override
     protected void initView() {
-        bPermission = checkPublishPermission();
-        if (bPermission) {
-            initPlayer();
-        }
-        if (!bPermission) {
-            showToast("app所需要的权限未满足");
-        }
-        if (config != null && config.dynamicLoadingConfig != null &&
-                config.dynamicLoadingConfig.isDynamicLoading && !NELivePlayer.isDynamicLoadReady()) {
-            showToast("请等待加载so文件");
-            return;
-        }
-        fragmentList = new ArrayList<>();
-        fragmentList.add(HomeFragment.newInstance());
-        fragmentList.add(RegisterFragment.newInstance());
-        viewPager.setOffscreenPageLimit(1);
-        viewPager.setAdapter(new MyPagerAdapter(getSupportFragmentManager(), fragmentList));
+        getRxPermissions().request(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA
+                , Manifest.permission.READ_PHONE_STATE, Manifest.permission.ACCESS_COARSE_LOCATION,
+                Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_NETWORK_STATE, Manifest.permission.READ_EXTERNAL_STORAGE).subscribe(new Observer<Boolean>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+
+            }
+
+            @Override
+            public void onNext(Boolean aBoolean) {
+                if (aBoolean) {
+                    initPlayer();
+                    if (config != null && config.dynamicLoadingConfig != null &&
+                            config.dynamicLoadingConfig.isDynamicLoading && !NELivePlayer.isDynamicLoadReady()) {
+                        showToast("请等待加载so文件");
+                        return;
+                    }
+                    fragmentList = new ArrayList<>();
+                    fragmentList.add(HomeFragment.newInstance());
+                    fragmentList.add(RegisterFragment.newInstance());
+                    viewPager.setOffscreenPageLimit(1);
+                    viewPager.setAdapter(new MyPagerAdapter(getSupportFragmentManager(), fragmentList));
+                } else {
+                    showToast("app所需要的权限未满足");
+                }
+            }
+
+            @Override
+            public void onError(Throwable e) {
+            }
+
+            @Override
+            public void onComplete() {
+            }
+        });
     }
 
     private void initPlayer() {
@@ -282,24 +265,6 @@ public class MainActivity extends BaseActivity {
         return (response == HttpURLConnection.HTTP_OK);
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        switch (requestCode) {
-            case WRITE_PERMISSION_REQ_CODE:
-                initPlayer();
-                for (int ret : grantResults) {
-                    if (ret != PackageManager.PERMISSION_GRANTED) {
-                        return;
-                    }
-                }
-                bPermission = true;
-                break;
-            default:
-                break;
-        }
-    }
-
     @OnClick({R.id.one_ll, R.id.publish_iv, R.id.two_ll, R.id.red_history_ll, R.id.sign_in_ll, R.id.wallet_ll, R.id.friend_ll, R.id.drafts_ll, R.id.message_ll, R.id.ad_ll, R.id.setting_ll, R.id.certification_ll})
     public void onViewClicked(View view) {
         switch (view.getId()) {
@@ -307,7 +272,8 @@ public class MainActivity extends BaseActivity {
                 viewPager.setCurrentItem(0);
                 oneView.setVisibility(View.VISIBLE);
                 twoView.setVisibility(View.GONE);
-                MyApplication.isAtPlayer = true;
+                MyApplication.isAtHome = true;
+                EventBus.getDefault().post(new PlayerStartEvent());
                 break;
             case R.id.publish_iv:
                 break;
@@ -315,7 +281,8 @@ public class MainActivity extends BaseActivity {
                 viewPager.setCurrentItem(1);
                 oneView.setVisibility(View.GONE);
                 twoView.setVisibility(View.VISIBLE);
-                MyApplication.isAtPlayer = false;
+                MyApplication.isAtHome = false;
+                EventBus.getDefault().post(new PlayerStopEvent());
                 break;
             case R.id.red_history_ll:
                 break;

@@ -7,8 +7,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.viewpager.widget.PagerAdapter;
 
@@ -24,11 +26,15 @@ import com.netease.neliveplayer.playerkit.sdk.model.VideoScaleMode;
 import com.netease.neliveplayer.playerkit.sdk.view.AdvanceTextureView;
 import com.netease.neliveplayer.sdk.model.NEAutoRetryConfig;
 import com.quyum.hyppe.R;
+import com.quyum.hyppe.base.MyApplication;
 import com.quyum.hyppe.ui.home.bean.PlayerInfo;
+import com.quyum.hyppe.ui.home.fragment.HomeChildFragment;
 import com.quyum.hyppe.utils.player.ShortPlayerObserver;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 import static android.content.ContentValues.TAG;
 import static com.quyum.hyppe.utils.ToastUtils.showToast;
@@ -41,8 +47,32 @@ public class VodPagerAdapter extends PagerAdapter {
     private PlayerInfo mPlayerInfo;
     private AutoRetryConfig autoRetryConfig;
     private boolean isErrorShow = false;
+    private HomeChildFragment homeChildFragment;
+    private int pos;
+    private View.OnClickListener giftOnClickListener;
+    private View.OnClickListener followOnClickListener;
+    private View.OnClickListener hashOnClickListener;
+    private View.OnClickListener likeOnClickListener;
+    private View.OnClickListener unLikeOnClickListener;
+    private View.OnClickListener emojiOnClickListener;
+    private View.OnClickListener forwardOnClickListener;
+    private View.OnClickListener commentsOnClickListener;
 
-    public VodPagerAdapter(Context context, List<String> liveUrlList) {
+
+    public VodPagerAdapter(HomeChildFragment homeChildFragment, Context context, List<String> liveUrlList, int pos, View.OnClickListener giftOnClickListener,
+                           View.OnClickListener followOnClickListener, View.OnClickListener hashOnClickListener, View.OnClickListener likeOnClickListener,
+                           View.OnClickListener unLikeOnClickListener, View.OnClickListener emojiOnClickListener, View.OnClickListener forwardOnClickListener,
+                           View.OnClickListener commentsOnClickListener) {
+        this.giftOnClickListener = giftOnClickListener;
+        this.followOnClickListener = followOnClickListener;
+        this.hashOnClickListener = hashOnClickListener;
+        this.likeOnClickListener = likeOnClickListener;
+        this.unLikeOnClickListener = unLikeOnClickListener;
+        this.emojiOnClickListener = emojiOnClickListener;
+        this.forwardOnClickListener = forwardOnClickListener;
+        this.commentsOnClickListener = commentsOnClickListener;
+        this.homeChildFragment = homeChildFragment;
+        this.pos = pos;
         this.liveUrlList = liveUrlList;
         this.context = context;
         autoRetryConfig = new AutoRetryConfig();
@@ -87,7 +117,45 @@ public class VodPagerAdapter extends PagerAdapter {
 
         View view = LayoutInflater.from(container.getContext()).inflate(R.layout.texture_item_layout, null);
         view.setId(position);
+        CircleImageView circleImageView = view.findViewById(R.id.icon_iv);
+        TextView nameTv = view.findViewById(R.id.name_tv);
+        Button followBt = view.findViewById(R.id.follow_bt);
+        ImageView giftIv = view.findViewById(R.id.gift_iv);
+        LinearLayout hashLl = view.findViewById(R.id.hash_ll);
+        TextView hashTv = view.findViewById(R.id.hash_tv);
+        LinearLayout likeLl = view.findViewById(R.id.like_ll);
+        TextView likeTv = view.findViewById(R.id.like_tv);
+        LinearLayout unLikeLl = view.findViewById(R.id.un_like_ll);
+        TextView unLikeTv = view.findViewById(R.id.un_like_tv);
+        LinearLayout expressionLl = view.findViewById(R.id.expression_ll);
+        TextView expressionTv = view.findViewById(R.id.expression_tv);
+        LinearLayout forwardLl = view.findViewById(R.id.forward_ll);
+        TextView forwardTv = view.findViewById(R.id.forward_tv);
+        Button lookCommentsBt = view.findViewById(R.id.look_comments_bt);
+        TextView titleTv = view.findViewById(R.id.title_tv);
+        giftIv.setTag(position);
+        giftIv.setOnClickListener(giftOnClickListener);
 
+        followBt.setTag(position);
+        followBt.setOnClickListener(followOnClickListener);
+
+        hashLl.setTag(position);
+        hashLl.setOnClickListener(hashOnClickListener);
+
+        likeLl.setTag(position);
+        likeLl.setOnClickListener(likeOnClickListener);
+
+        unLikeLl.setTag(position);
+        unLikeLl.setOnClickListener(unLikeOnClickListener);
+
+        expressionLl.setTag(position);
+        expressionLl.setOnClickListener(emojiOnClickListener);
+
+        forwardLl.setTag(position);
+        forwardLl.setOnClickListener(forwardOnClickListener);
+
+        lookCommentsBt.setTag(position);
+        lookCommentsBt.setOnClickListener(commentsOnClickListener);
         // 获取此player
         PlayerInfo playerInfo = instantiatePlayerInfo(position);
         AdvanceTextureView advanceSingleTextureView = view.findViewById(R.id.live_texture);
@@ -102,7 +170,7 @@ public class VodPagerAdapter extends PagerAdapter {
 
         playerInfo.vodPlayer.setMute(true);
         if (mCurrentPosition == position) {
-            mPlayerInfo = playerInfo;
+            homeChildFragment.setPlayerInfo(playerInfo);
         }
         container.addView(view);
 
@@ -165,7 +233,9 @@ public class VodPagerAdapter extends PagerAdapter {
         vodPlayer.setAutoRetryConfig(autoRetryConfig);
         vodPlayer.registerPlayerObserver(playerObserver, true);
         Log.i(TAG, "play start,instantiatePlayerInfo position" + position + "，vodPlayer" + vodPlayer);
-        vodPlayer.start();
+        if (MyApplication.isAtPlayerOne && pos == 0) {
+            vodPlayer.start();
+        }
         playerInfo.playURL = liveUrlList.get(position % liveUrlList.size());
         playerInfo.vodPlayer = vodPlayer;
         playerInfo.playerObserver = playerObserver;

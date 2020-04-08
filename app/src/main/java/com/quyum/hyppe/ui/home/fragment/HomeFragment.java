@@ -14,6 +14,9 @@ import com.quyum.hyppe.R;
 import com.quyum.hyppe.base.BaseFragment;
 import com.quyum.hyppe.base.MyApplication;
 import com.quyum.hyppe.event.HomeLeftEvent;
+import com.quyum.hyppe.event.PlayerChildSwitchStopEvent;
+import com.quyum.hyppe.event.PlayerStartEvent;
+import com.quyum.hyppe.event.PlayerStopEvent;
 import com.quyum.hyppe.weight.SlidingScaleTabLayout.SlidingScaleTabLayout;
 import com.quyum.hyppe.weight.TitleBar;
 
@@ -53,16 +56,22 @@ public class HomeFragment extends BaseFragment {
 
     @Override
     protected void initView(Bundle savedInstanceState) {
-        viewPager.setOffscreenPageLimit(2);
+        viewPager.setOffscreenPageLimit(1);
         viewPager.setAdapter(new MyViewPagerAdapter(getChildFragmentManager()));
         tabLayout.setViewPager(viewPager, tabTitle);
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
                 if (position == 0) {
-                    MyApplication.isAtPlayer = true;
+                    MyApplication.isAtPlayerOne = true;
+                    MyApplication.isAtPlayerTwo = false;
+                    EventBus.getDefault().post(new PlayerStartEvent());
+                    EventBus.getDefault().post(new PlayerChildSwitchStopEvent());
                 } else {
-                    MyApplication.isAtPlayer = false;
+                    MyApplication.isAtPlayerTwo = true;
+                    MyApplication.isAtPlayerOne = false;
+                    EventBus.getDefault().post(new PlayerStartEvent());
+                    EventBus.getDefault().post(new PlayerChildSwitchStopEvent());
                 }
             }
 

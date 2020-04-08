@@ -32,7 +32,9 @@ public class MyApplication extends Application {
     public static boolean startFrist = false;//是否启动过
     private static Context context;
     private static Handler mHandler;//主线程Handler
-    public static Boolean isAtPlayer = false;
+    public static Boolean isAtPlayerOne = true;
+    public static Boolean isAtPlayerTwo = false;
+    public static Boolean isAtHome = true;
 
     public static Context getContext() {
         return context;

@@ -101,5 +101,6 @@ dependencies {
     implementation 'com.github.zzz40500:android-shapeLoadingView:1.0.3.2'
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
     implementation project(path: ':playerkit')
+    implementation 'com.google.android.material:material:1.0.0'
 
 }

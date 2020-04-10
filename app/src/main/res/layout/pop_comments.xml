@@ -3,6 +3,7 @@
     android:id="@+id/root_layout"
     android:layout_width="match_parent"
     android:layout_height="460dp"
+    android:layout_alignParentBottom="true"
     android:background="@drawable/bg_gift"
     android:orientation="vertical">
 

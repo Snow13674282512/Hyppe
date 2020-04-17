@@ -1,2 +1,2 @@
-include ':app', ':playerkit'
+include ':app', ':dkplayer-videocache', ':dkplayer-java', ':dkplayer-players:exo', ':dkplayer-players:ijk'
 rootProject.name='Hyppe'

@@ -1,10 +1,8 @@
 package com.quyum.hyppe.ui.home.activity;
 
-import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.RelativeLayout;
@@ -17,11 +15,6 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
-import com.netease.neliveplayer.playerkit.sdk.PlayerManager;
-import com.netease.neliveplayer.playerkit.sdk.model.SDKInfo;
-import com.netease.neliveplayer.playerkit.sdk.model.SDKOptions;
-import com.netease.neliveplayer.proxy.config.NEPlayerConfig;
-import com.netease.neliveplayer.sdk.NELivePlayer;
 import com.quyum.hyppe.R;
 import com.quyum.hyppe.base.BaseActivity;
 import com.quyum.hyppe.base.BaseFragment;
@@ -32,28 +25,18 @@ import com.quyum.hyppe.event.PlayerStartEvent;
 import com.quyum.hyppe.event.PlayerStopEvent;
 import com.quyum.hyppe.ui.home.fragment.HomeFragment;
 import com.quyum.hyppe.ui.login.fragment.RegisterFragment;
-import com.quyum.hyppe.utils.player.HttpPostUtils;
 import com.quyum.hyppe.weight.TitleBar;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
-import java.io.IOException;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
-import io.reactivex.Observer;
-import io.reactivex.disposables.Disposable;
-
-import static com.quyum.hyppe.utils.ToastUtils.showToast;
 
 public class MainActivity extends BaseActivity {
     public static String TAG = "MainActivity";
@@ -80,7 +63,7 @@ public class MainActivity extends BaseActivity {
     @BindView(R.id.main_rl)
     RelativeLayout mainRl;
     private List<BaseFragment> fragmentList;
-    private SDKOptions config;
+    Boolean isFirst = true;
 
     public static void start(Context context) {
         start(context, null);
@@ -146,123 +129,21 @@ public class MainActivity extends BaseActivity {
     protected void onResume() {
         super.onResume();
         if (MyApplication.isAtHome) {
-            EventBus.getDefault().post(new PlayerStartEvent());
+            if (!isFirst) {
+                EventBus.getDefault().post(new PlayerStartEvent());
+            } else {
+                isFirst = false;
+            }
         }
     }
 
     @Override
     protected void initView() {
-        getRxPermissions().request(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA
-                , Manifest.permission.READ_PHONE_STATE, Manifest.permission.ACCESS_COARSE_LOCATION,
-                Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_NETWORK_STATE, Manifest.permission.READ_EXTERNAL_STORAGE).subscribe(new Observer<Boolean>() {
-            @Override
-            public void onSubscribe(Disposable d) {
-
-            }
-
-            @Override
-            public void onNext(Boolean aBoolean) {
-                if (aBoolean) {
-                    initPlayer();
-                    if (config != null && config.dynamicLoadingConfig != null &&
-                            config.dynamicLoadingConfig.isDynamicLoading && !NELivePlayer.isDynamicLoadReady()) {
-                        showToast("请等待加载so文件");
-                        return;
-                    }
-                    fragmentList = new ArrayList<>();
-                    fragmentList.add(HomeFragment.newInstance());
-                    fragmentList.add(RegisterFragment.newInstance());
-                    viewPager.setOffscreenPageLimit(1);
-                    viewPager.setAdapter(new MyPagerAdapter(getSupportFragmentManager(), fragmentList));
-                } else {
-                    showToast("app所需要的权限未满足");
-                }
-            }
-
-            @Override
-            public void onError(Throwable e) {
-            }
-
-            @Override
-            public void onComplete() {
-            }
-        });
-    }
-
-    private void initPlayer() {
-        config = new SDKOptions();
-        //是否开启动态加载功能，默认关闭
-        //        config.dynamicLoadingConfig = new NEDynamicLoadingConfig();
-        //        config.dynamicLoadingConfig.isDynamicLoading = true;
-        //        config.dynamicLoadingConfig.isArmeabiv7a = true;
-        //        config.dynamicLoadingConfig.armeabiv7aUrl = "your_url";
-        //        config.dynamicLoadingConfig.onDynamicLoadingListener = mOnDynamicLoadingListener;
-        // SDK将内部的网络请求以回调的方式开给上层，如果需要上层自己进行网络请求请实现config.dataUploadListener，
-        // 如果上层不需要自己进行网络请求而是让SDK进行网络请求，这里就不需要操作config.dataUploadListener
-        config.dataUploadListener = mOnDataUploadListener;
-        //是否支持H265解码回调
-        config.supportDecodeListener = mOnSupportDecodeListener;
-        //这里可以绑定客户的账号系统或device_id，方便出问题时双方联调
-        //        config.thirdUserId = "your_id";
-        config.privateConfig = new NEPlayerConfig();
-        PlayerManager.init(this, config);
-        SDKInfo sdkInfo = PlayerManager.getSDKInfo(this);
-        Log.i(TAG, "NESDKInfo:version" + sdkInfo.version + ",deviceId:" + sdkInfo.deviceId);
-    }
-
-    private NELivePlayer.OnDataUploadListener mOnDataUploadListener = new NELivePlayer.OnDataUploadListener() {
-
-        @Override
-        public boolean onDataUpload(String url, String data) {
-            Log.d(TAG, "onDataUpload url:" + url + ", data:" + data);
-            sendData(url, data);
-            return true;
-        }
-
-        @Override
-        public boolean onDocumentUpload(String url, Map<String, String> params, Map<String, String> filepaths) {
-            Log.d(TAG, "onDataUpload url:" + url + ", params:" + params + ",filepaths:" + filepaths);
-            return (new HttpPostUtils(url, params, filepaths).connPost());
-        }
-    };
-
-    private NELivePlayer.OnSupportDecodeListener mOnSupportDecodeListener = new NELivePlayer.OnSupportDecodeListener() {
-
-        @Override
-        public void onSupportDecode(boolean isSupport) {
-            Log.d(TAG, "是否支持H265硬件解码 onSupportDecode isSupport:" + isSupport);
-            //如果支持H265硬件解码，那么可以使用H265的视频源进行播放
-        }
-    };
-
-    private boolean sendData(final String urlStr, final String content) {
-        int response = 0;
-        try {
-            URL url = new URL(urlStr);
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setConnectTimeout(5000);
-            conn.setDoOutput(true);
-            conn.setDoInput(true);
-            conn.setRequestMethod("POST");
-            conn.setRequestProperty("Content-Type", "application/json;charset=utf-8");
-            OutputStream outputStream = conn.getOutputStream();
-            outputStream.write(content.getBytes());
-            response = conn.getResponseCode();
-            if (response == HttpURLConnection.HTTP_OK) {
-                Log.i(TAG, " sendData finished,data:" + content);
-
-            } else {
-                Log.i(TAG, " sendData, response: " + response);
-
-            }
-        } catch (IOException e) {
-            Log.e(TAG, "sendData, recv code is error: " + e.getMessage());
-
-        } catch (Exception e) {
-            Log.e(TAG, "sendData, recv code is error2: " + e.getMessage());
-
-        }
-        return (response == HttpURLConnection.HTTP_OK);
+        fragmentList = new ArrayList<>();
+        fragmentList.add(HomeFragment.newInstance());
+        fragmentList.add(RegisterFragment.newInstance());
+        viewPager.setOffscreenPageLimit(1);
+        viewPager.setAdapter(new MyPagerAdapter(getSupportFragmentManager(), fragmentList));
     }
 
     @OnClick({R.id.one_ll, R.id.publish_iv, R.id.two_ll, R.id.red_history_ll, R.id.sign_in_ll, R.id.wallet_ll, R.id.friend_ll, R.id.drafts_ll, R.id.message_ll, R.id.ad_ll, R.id.setting_ll, R.id.certification_ll})

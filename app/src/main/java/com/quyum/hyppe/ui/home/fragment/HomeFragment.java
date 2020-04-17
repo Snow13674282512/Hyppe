@@ -16,7 +16,6 @@ import com.quyum.hyppe.base.MyApplication;
 import com.quyum.hyppe.event.HomeLeftEvent;
 import com.quyum.hyppe.event.PlayerChildSwitchStopEvent;
 import com.quyum.hyppe.event.PlayerStartEvent;
-import com.quyum.hyppe.event.PlayerStopEvent;
 import com.quyum.hyppe.weight.SlidingScaleTabLayout.SlidingScaleTabLayout;
 import com.quyum.hyppe.weight.TitleBar;
 
@@ -31,6 +30,7 @@ public class HomeFragment extends BaseFragment {
     @BindView(R.id.tab_layout)
     SlidingScaleTabLayout tabLayout;
     private String[] tabTitle = {"Follows", "Recommend"};
+    Boolean isFirst = true;
 
     public static HomeFragment newInstance() {
         Bundle args = new Bundle();
@@ -65,8 +65,12 @@ public class HomeFragment extends BaseFragment {
                 if (position == 0) {
                     MyApplication.isAtPlayerOne = true;
                     MyApplication.isAtPlayerTwo = false;
-                    EventBus.getDefault().post(new PlayerStartEvent());
-                    EventBus.getDefault().post(new PlayerChildSwitchStopEvent());
+                    if (!isFirst) {
+                        EventBus.getDefault().post(new PlayerStartEvent());
+                        EventBus.getDefault().post(new PlayerChildSwitchStopEvent());
+                    } else {
+                        isFirst = false;
+                    }
                 } else {
                     MyApplication.isAtPlayerTwo = true;
                     MyApplication.isAtPlayerOne = false;

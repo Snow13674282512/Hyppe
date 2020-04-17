@@ -8,6 +8,10 @@ import android.os.StrictMode;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
+import com.dueeeke.videoplayer.BuildConfig;
+import com.dueeeke.videoplayer.ijk.IjkPlayerFactory;
+import com.dueeeke.videoplayer.player.VideoViewConfig;
+import com.dueeeke.videoplayer.player.VideoViewManager;
 import com.quyum.hyppe.R;
 import com.quyum.hyppe.config.SystemParams;
 import com.quyum.hyppe.net.NetError;
@@ -64,6 +68,19 @@ public class MyApplication extends Application {
         super.onCreate();
         XLog.e("MyApplication", "-------------onCreate-start" + System.currentTimeMillis());
         context = this;
+
+        VideoViewManager.setConfig(VideoViewConfig.newBuilder()
+                .setLogEnabled(BuildConfig.DEBUG)//调试的时候请打开日志，方便排错
+                .setPlayerFactory(IjkPlayerFactory.create())
+//                .setPlayerFactory(ExoMediaPlayerFactory.create())
+//                .setRenderViewFactory(SurfaceRenderViewFactory.create())
+//                .setEnableOrientation(true)
+//                .setEnableAudioFocus(false)
+//                .setScreenScaleType(VideoView.SCREEN_SCALE_MATCH_PARENT)
+//                .setAdaptCutout(false)
+//                .setPlayOnMobileNetwork(true)
+//                .setProgressManager(new ProgressManagerImpl())
+                .build());
         //测试
         if (null == CurrentUser && startFrist) {//第一次启动不去加载
             // 从本地读取--防止闪退的时候清空了CurrentUser
@@ -75,7 +92,7 @@ public class MyApplication extends Application {
         //Glide配置
         options = new RequestOptions()
                 .centerCrop()
-                .placeholder(R.mipmap.ic_launcher_round)
+                .placeholder(R.drawable.login_bg)
                 .diskCacheStrategy(DiskCacheStrategy.ALL);
         //圆图Glide配置
         optionsCircle = new RequestOptions()

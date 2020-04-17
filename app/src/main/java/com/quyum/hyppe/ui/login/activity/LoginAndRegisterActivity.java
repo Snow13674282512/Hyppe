@@ -1,8 +1,12 @@
 package com.quyum.hyppe.ui.login.activity;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Settings;
+import android.text.TextUtils;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -15,7 +19,10 @@ import com.quyum.hyppe.base.BaseActivity;
 import com.quyum.hyppe.base.BaseFragment;
 import com.quyum.hyppe.ui.login.fragment.LoginFragment;
 import com.quyum.hyppe.ui.login.fragment.RegisterFragment;
+import com.quyum.hyppe.utils.ToastUtils;
 import com.quyum.hyppe.weight.TitleBar;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +30,8 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import io.reactivex.Observer;
+import io.reactivex.disposables.Disposable;
 
 public class LoginAndRegisterActivity extends BaseActivity {
     @BindView(R.id.tab_layout)
@@ -95,7 +104,34 @@ public class LoginAndRegisterActivity extends BaseActivity {
 
     @Override
     protected void initData(Bundle savedInstanceState) {
+        getRxPermissions().request(Manifest.permission.WRITE_EXTERNAL_STORAGE).subscribe(new Observer<Boolean>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+            }
 
+            @Override
+            public void onNext(Boolean aBoolean) {
+                if (aBoolean) {
+
+                } else {
+                    ToastUtils.showToast("您已拒绝相关权限，如要使用该功能请打开应用设置开放相关权限");
+                    Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.setData(Uri.fromParts("package", getPackageName(), null));
+                    if (intent.resolveActivity(getPackageManager()) != null) {
+                        startActivity(intent);
+                    }
+                }
+            }
+
+            @Override
+            public void onError(Throwable e) {
+            }
+
+            @Override
+            public void onComplete() {
+            }
+        });
     }
 
     @OnClick(R.id.right_top_iv)

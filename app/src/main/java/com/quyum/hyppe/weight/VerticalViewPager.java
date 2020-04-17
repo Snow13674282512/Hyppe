@@ -35,7 +35,6 @@ import androidx.core.view.MotionEventCompat;
 import androidx.core.view.VelocityTrackerCompat;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.ViewConfigurationCompat;
-import androidx.core.view.accessibility.AccessibilityEventCompat;
 import androidx.core.view.accessibility.AccessibilityNodeInfoCompat;
 import androidx.core.view.accessibility.AccessibilityRecordCompat;
 import androidx.core.widget.EdgeEffectCompat;
@@ -47,6 +46,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
+/**
+ * Created by castorflex on 12/29/13.
+ * Just a copy of the original ViewPager modified to support vertical Scrolling
+ */
 public class VerticalViewPager extends ViewGroup {
 
     private static final String TAG = "ViewPager";
@@ -61,6 +64,8 @@ public class VerticalViewPager extends ViewGroup {
     private static final int DEFAULT_GUTTER_SIZE = 16; // dips
 
     private static final int MIN_FLING_VELOCITY = 400; // dips
+
+    private final int TYPE_VIEW_SCROLLED = 4096;
 
     private static final int[] LAYOUT_ATTRS = new int[]{
             android.R.attr.layout_gravity
@@ -1715,9 +1720,9 @@ public class VerticalViewPager extends ViewGroup {
                  */
 
                 /*
-                * Locally do absolute value. mLastMotionY is set to the y value
-                * of the down event.
-                */
+                 * Locally do absolute value. mLastMotionY is set to the y value
+                 * of the down event.
+                 */
                 final int activePointerId = mActivePointerId;
                 if (activePointerId == INVALID_POINTER) {
                     // If we don't have a valid id, the touch down wasn't on content.
@@ -2387,12 +2392,12 @@ public class VerticalViewPager extends ViewGroup {
                     handled = arrowScroll(FOCUS_RIGHT);
                     break;
                 case KeyEvent.KEYCODE_TAB:
-                    // The focus finder had a bug handling FOCUS_FORWARD and FOCUS_BACKWARD
-                    // before Android 3.0. Ignore the tab key on those devices.
-                    if (event.hasNoModifiers()) {
-                        handled = arrowScroll(FOCUS_FORWARD);
-                    } else if (event.hasModifiers(KeyEvent.META_SHIFT_ON)) {
-                        handled = arrowScroll(FOCUS_BACKWARD);
+                    if (Build.VERSION.SDK_INT >= 11) {
+                        if (event.hasNoModifiers()) {
+                            handled = this.arrowScroll(2);
+                        } else if (event.hasModifiers(1)) {
+                            handled = this.arrowScroll(1);
+                        }
                     }
                     break;
             }
@@ -2607,7 +2612,7 @@ public class VerticalViewPager extends ViewGroup {
     @Override
     public boolean dispatchPopulateAccessibilityEvent(AccessibilityEvent event) {
         // Dispatch scroll events from this ViewPager.
-        if (event.getEventType() == AccessibilityEventCompat.TYPE_VIEW_SCROLLED) {
+        if (event.getEventType() == TYPE_VIEW_SCROLLED) {
             return super.dispatchPopulateAccessibilityEvent(event);
         }
 
@@ -2655,7 +2660,7 @@ public class VerticalViewPager extends ViewGroup {
             event.setClassName(ViewPager.class.getName());
             final AccessibilityRecordCompat recordCompat = AccessibilityRecordCompat.obtain();
             recordCompat.setScrollable(canScroll());
-            if (event.getEventType() == AccessibilityEventCompat.TYPE_VIEW_SCROLLED
+            if (event.getEventType() == TYPE_VIEW_SCROLLED
                     && mAdapter != null) {
                 recordCompat.setItemCount(mAdapter.getCount());
                 recordCompat.setFromIndex(mCurItem);

@@ -1,23 +1,20 @@
 package com.quyum.hyppe.weight;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Rect;
-import android.text.Editable;
 import android.text.TextUtils;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Display;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,9 +33,9 @@ public class InputTextMsgDialog extends AppCompatDialog {
     private Context mContext;
     private InputMethodManager imm;
     private EditText messageTextView;
-    private RelativeLayout rlDlg;
+    private LinearLayout rlDlg;
+    private ImageView atIv, emjoIv, sendIv;
     private int mLastDiff = 0;
-    private TextView tvNumber;
     private int maxNumber = 100;
 
     public interface OnTextSendListener {
@@ -59,15 +56,6 @@ public class InputTextMsgDialog extends AppCompatDialog {
     }
 
     /**
-     * 最大输入字数  默认100
-     */
-    @SuppressLint("SetTextI18n")
-    public void setMaxNumber(int maxNumber) {
-        this.maxNumber = maxNumber;
-        tvNumber.setText("0/" + maxNumber);
-    }
-
-    /**
      * 设置输入提示文字
      */
     public void setHint(String text) {
@@ -75,38 +63,19 @@ public class InputTextMsgDialog extends AppCompatDialog {
     }
 
     private void init() {
-        setContentView(R.layout.dialog_input_text_msg);
-        messageTextView = (EditText) findViewById(R.id.et_input_message);
-        tvNumber = (TextView) findViewById(R.id.tv_test);
+        setContentView(R.layout.pop_comments_bounce);
+        messageTextView = findViewById(R.id.content_et);
         final LinearLayout rldlgview = (LinearLayout) findViewById(R.id.rl_inputdlg_view);
+        atIv = findViewById(R.id.at_iv);
+        emjoIv = findViewById(R.id.emoji_iv);
+        sendIv = findViewById(R.id.send_iv);
         messageTextView.requestFocus();
-        messageTextView.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                tvNumber.setText(editable.length() + "/" + maxNumber);
-            }
-        });
 
         imm = (InputMethodManager) mContext.getSystemService(Context.INPUT_METHOD_SERVICE);
-        ImageView iv_confirm = findViewById(R.id.iv_confirm);
-        iv_confirm.setOnClickListener(new View.OnClickListener() {
+        sendIv.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View v) {
                 String msg = messageTextView.getText().toString().trim();
-                if (msg.length() > maxNumber) {
-                    Toast.makeText(mContext, "超过最大字数限制" + maxNumber, Toast.LENGTH_LONG).show();
-                    return;
-                }
                 if (!TextUtils.isEmpty(msg)) {
                     mOnTextSendListener.onTextSend(msg);
                     imm.showSoftInput(messageTextView, InputMethodManager.SHOW_FORCED);
@@ -116,10 +85,8 @@ public class InputTextMsgDialog extends AppCompatDialog {
                 } else {
                     ToastUtils.showToast("请输入文字");
                 }
-                messageTextView.setText(null);
             }
         });
-
         messageTextView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
@@ -184,7 +151,7 @@ public class InputTextMsgDialog extends AppCompatDialog {
             @Override
             public void onClick(View v) {
                 imm.hideSoftInputFromWindow(messageTextView.getWindowToken(), 0);
-                InputTextMsgDialog.this.dismiss();
+                    InputTextMsgDialog.this.dismiss();
             }
         });
 
@@ -220,7 +187,7 @@ public class InputTextMsgDialog extends AppCompatDialog {
         super.dismiss();
         //dismiss之前重置mLastDiff值避免下次无法打开
         mLastDiff = 0;
-        if (mOnTextSendListener!=null) mOnTextSendListener.dismiss();
+        if (mOnTextSendListener != null) mOnTextSendListener.dismiss();
 
     }
 

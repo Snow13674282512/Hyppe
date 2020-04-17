@@ -6,6 +6,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -69,6 +70,10 @@ public class EmojisPopWindow {
 
     public BaseQuickAdapter getAdapter() {
         return giftAdapter;
+    }
+
+    public void setOnCloseListener(PopupWindow.OnDismissListener onDismissListener) {
+        customPopWindow.setmOnDismissListener(onDismissListener);
     }
 
     public void close() {

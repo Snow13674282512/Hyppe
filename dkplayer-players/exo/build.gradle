@@ -1,0 +1,25 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.3"
+
+    defaultConfig {
+        minSdkVersion 19
+        targetSdkVersion 29
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation project(':dkplayer-java')
+    api "com.google.android.exoplayer:exoplayer-core:2.11.3"
+    api "com.google.android.exoplayer:exoplayer-dash:2.11.3"
+    api "com.google.android.exoplayer:exoplayer-hls:2.11.3"
+    api "com.google.android.exoplayer:exoplayer-smoothstreaming:2.11.3"
+    api "com.google.android.exoplayer:extension-rtmp:2.11.3"
+}
+
+ext {
+    releaseArtifact = 'player-exo'
+}

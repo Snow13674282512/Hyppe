@@ -1,0 +1,21 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.3"
+
+    defaultConfig {
+        minSdkVersion 19
+        targetSdkVersion 29
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    compileOnly project(':dkplayer-java')
+    api "tv.danmaku.ijk.media:ijkplayer-java:0.8.8"
+}
+
+ext {
+    releaseArtifact = 'player-ijk'
+}

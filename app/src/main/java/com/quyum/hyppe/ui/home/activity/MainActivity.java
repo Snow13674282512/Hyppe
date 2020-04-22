@@ -16,8 +16,8 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.quyum.hyppe.R;
-import com.quyum.hyppe.base.BaseActivity;
 import com.quyum.hyppe.base.BaseFragment;
+import com.quyum.hyppe.base.BaseMainActivity;
 import com.quyum.hyppe.base.MyApplication;
 import com.quyum.hyppe.event.FinishEvent;
 import com.quyum.hyppe.event.HomeLeftEvent;
@@ -38,7 +38,7 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseMainActivity {
     public static String TAG = "MainActivity";
     private final int WRITE_PERMISSION_REQ_CODE = 100;
 

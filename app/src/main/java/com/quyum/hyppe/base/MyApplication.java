@@ -12,6 +12,7 @@ import com.dueeeke.videoplayer.BuildConfig;
 import com.dueeeke.videoplayer.ijk.IjkPlayerFactory;
 import com.dueeeke.videoplayer.player.VideoViewConfig;
 import com.dueeeke.videoplayer.player.VideoViewManager;
+import com.qmuiteam.qmui.arch.QMUISwipeBackActivityManager;
 import com.quyum.hyppe.R;
 import com.quyum.hyppe.config.SystemParams;
 import com.quyum.hyppe.net.NetError;
@@ -69,6 +70,7 @@ public class MyApplication extends Application {
         XLog.e("MyApplication", "-------------onCreate-start" + System.currentTimeMillis());
         context = this;
 
+        QMUISwipeBackActivityManager.init(this);
         VideoViewManager.setConfig(VideoViewConfig.newBuilder()
                 .setLogEnabled(BuildConfig.DEBUG)//调试的时候请打开日志，方便排错
                 .setPlayerFactory(IjkPlayerFactory.create())
@@ -92,7 +94,7 @@ public class MyApplication extends Application {
         //Glide配置
         options = new RequestOptions()
                 .centerCrop()
-                .placeholder(R.drawable.login_bg)
+                .placeholder(R.drawable.placeholder)
                 .diskCacheStrategy(DiskCacheStrategy.ALL);
         //圆图Glide配置
         optionsCircle = new RequestOptions()

@@ -9,10 +9,12 @@ import android.widget.Button;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.quyum.hyppe.R;
 import com.quyum.hyppe.ui.home.adapter.PopGiftAdapter;
 import com.quyum.hyppe.ui.home.bean.GiftBean;
@@ -23,12 +25,14 @@ import java.util.List;
 public class GiftPopWindow {
     private CustomPopWindow customPopWindow;
     private Context context;
-    private PopGiftAdapter giftAdapter;
+    private PopGiftAdapter adapter;
     private View linearLayout;
+    private View.OnClickListener onClickListener;
 
-    public GiftPopWindow(View linearLayout, Context context) {
+    public GiftPopWindow(View linearLayout, Context context, View.OnClickListener onClickListener) {
         this.linearLayout = linearLayout;
         this.context = context;
+        this.onClickListener = onClickListener;
         View contentView = LayoutInflater.from(context).inflate(R.layout.pop_gift, null);
         handleNation(contentView);
         customPopWindow = new CustomPopWindow.PopupWindowBuilder(context)
@@ -43,16 +47,17 @@ public class GiftPopWindow {
     }
 
     private void handleNation(View contentView) {
-        RecyclerView giftRecyclerView = contentView.findViewById(R.id.recycler_view);
+        RecyclerView recyclerView = contentView.findViewById(R.id.recycler_view);
         TextView balanceTv = contentView.findViewById(R.id.balance_tv);
         TextView topUp = contentView.findViewById(R.id.top_up_tv);
         Button sendBt = contentView.findViewById(R.id.send_bt);
 
+        topUp.setOnClickListener(onClickListener);
         sendBt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Boolean isHaveSelect = false;
-                for (GiftBean.DataBean item : giftAdapter.getData()) {
+                for (GiftBean.DataBean item : adapter.getData()) {
                     if (item.isSelect) {
                         isHaveSelect = true;
                     }
@@ -65,13 +70,13 @@ public class GiftPopWindow {
                 customPopWindow.dissmiss();
             }
         });
-        giftRecyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
-        giftAdapter = new PopGiftAdapter();
-        giftRecyclerView.setAdapter(giftAdapter);
-        giftAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+        recyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
+        adapter = new PopGiftAdapter();
+        recyclerView.setAdapter(adapter);
+        adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                List<GiftBean.DataBean> list = adapter.getData();
+                List<GiftBean.DataBean> list = (List<GiftBean.DataBean>) adapter.getData();
                 for (GiftBean.DataBean item : list) {
                     item.isSelect = false;
                 }
@@ -86,7 +91,7 @@ public class GiftPopWindow {
     }
 
     public BaseQuickAdapter getAdapter() {
-        return giftAdapter;
+        return adapter;
     }
 
     public void close() {

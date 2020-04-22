@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.quyum.hyppe.R;
 import com.quyum.hyppe.ui.home.adapter.PopEmojisAdapter;
 import com.quyum.hyppe.ui.home.bean.EmojisBean;
@@ -20,7 +21,7 @@ import com.quyum.hyppe.ui.home.bean.EmojisBean;
 public class EmojisPopWindow {
     private CustomPopWindow customPopWindow;
     private Context context;
-    private PopEmojisAdapter giftAdapter;
+    private PopEmojisAdapter adapter;
     private View linearLayout;
 
     public EmojisPopWindow(View linearLayout, Context context) {
@@ -40,7 +41,7 @@ public class EmojisPopWindow {
     }
 
     private void handleNation(View contentView) {
-        RecyclerView giftRecyclerView = contentView.findViewById(R.id.recycler_view);
+        RecyclerView recyclerView = contentView.findViewById(R.id.recycler_view);
         TextView cancelTv = contentView.findViewById(R.id.cancel_tv);
 
         cancelTv.setOnClickListener(new View.OnClickListener() {
@@ -49,10 +50,10 @@ public class EmojisPopWindow {
                 customPopWindow.dissmiss();
             }
         });
-        giftRecyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
-        giftAdapter = new PopEmojisAdapter();
-        giftRecyclerView.setAdapter(giftAdapter);
-        giftAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+        recyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
+        adapter = new PopEmojisAdapter();
+        recyclerView.setAdapter(adapter);
+        adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 customPopWindow.dissmiss();
@@ -69,7 +70,7 @@ public class EmojisPopWindow {
     }
 
     public BaseQuickAdapter getAdapter() {
-        return giftAdapter;
+        return adapter;
     }
 
     public void setOnCloseListener(PopupWindow.OnDismissListener onDismissListener) {

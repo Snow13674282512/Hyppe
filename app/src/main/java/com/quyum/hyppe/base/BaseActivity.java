@@ -2,8 +2,10 @@ package com.quyum.hyppe.base;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Trace;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -12,22 +14,25 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
+import com.qmuiteam.qmui.BuildConfig;
+import com.qmuiteam.qmui.arch.QMUIActivity;
+import com.qmuiteam.qmui.skin.QMUISkinManager;
+import com.qmuiteam.qmui.util.QMUIResHelper;
+import com.qmuiteam.qmui.util.QMUIStatusBarHelper;
 import com.quyum.hyppe.R;
 import com.quyum.hyppe.config.SystemParams;
 import com.quyum.hyppe.event.FinishEvent;
 import com.quyum.hyppe.net.NetError;
 import com.quyum.hyppe.net.XDroidConf;
-import com.quyum.hyppe.utils.StatusBar;
-import com.quyum.hyppe.utils.StatusNavUtils;
 import com.quyum.hyppe.utils.StreamUtil;
 import com.quyum.hyppe.utils.ToastUtils;
 import com.quyum.hyppe.weight.TitleBar;
 import com.tbruyelle.rxpermissions2.RxPermissions;
-import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -35,15 +40,18 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import io.reactivex.disposables.CompositeDisposable;
 
+import static com.qmuiteam.qmui.skin.QMUISkinManager.DEFAULT_SKIN;
 import static com.quyum.hyppe.base.MyApplication.getCacheFile;
 
 
-public abstract class BaseActivity extends RxAppCompatActivity {
+public abstract class BaseActivity extends QMUIActivity {
     public CompositeDisposable compositeDisposable;
     protected ViewGroup mRootView;
     protected LinearLayout mContentRootView;
     protected TitleBar mTitleBar;
     protected BaseActivity mContext;
+    protected View bottomView;
+    protected RelativeLayout titleRootRl;
     private RxPermissions rxPermissions;
     private Unbinder mUnBinder;
 //    private MyApplication application;
@@ -51,24 +59,18 @@ public abstract class BaseActivity extends RxAppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-//            try {
-//                Class decorViewClazz = Class.forName("com.android.internal.policy.DecorView");
-//                Field field = decorViewClazz.getDeclaredField("mSemiTransparentStatusBarColor");
-//                field.setAccessible(true);
-//                field.setInt(getWindow().getDecorView(), Color.TRANSPARENT);  //改为透明
-//            } catch (Exception e) {
-//                String s = e.toString();
-//            }
-//        }
-
         setContentView(R.layout.base_activity);
-        StatusNavUtils.setStatusBarColor(this, 0x00000000);
+        QMUIStatusBarHelper.translucent(this);
+        QMUIStatusBarHelper.setStatusBarDarkMode(this);
         mContext = this;
         compositeDisposable = new CompositeDisposable();
-//        StatusBar.transportStatus(this);
         basicInitialize();
         mUnBinder = ButterKnife.bind(this);
+        Resources.Theme theme = getResources().newTheme();
+        theme.applyStyle(R.style.app_skin_dark, true);
+
+        mContext.getWindow().setBackgroundDrawable(QMUIResHelper.getAttrDrawable(
+                mContext, theme, com.qmuiteam.qmui.R.attr.qmui_skin_support_activity_background));
 
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
             int statusBarHeight1 = -1;
@@ -144,8 +146,9 @@ public abstract class BaseActivity extends RxAppCompatActivity {
         mRootView = findViewById(R.id.rootView_baseActivity);
         mContentRootView = findViewById(R.id.content);
         mTitleBar = findViewById(R.id.titleBar);
+        bottomView = findViewById(R.id.bottom_view);
+        titleRootRl = findViewById(R.id.title_root_rl);
         mRootView.setBackgroundResource(getActivityBg());
-        StatusBar.StatusBarDarkMode(mContext);
     }
 
     protected abstract void addListener();
@@ -182,7 +185,7 @@ public abstract class BaseActivity extends RxAppCompatActivity {
      * */
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        InputMethodManager imm= (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
+        InputMethodManager imm = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             if (this.getCurrentFocus() != null) {
                 if (this.getCurrentFocus().getWindowToken() != null) {

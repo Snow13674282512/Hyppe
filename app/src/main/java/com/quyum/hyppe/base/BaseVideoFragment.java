@@ -9,6 +9,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -35,7 +36,7 @@ public abstract class BaseVideoFragment<T extends VideoView> extends RxFragment 
     protected ViewGroup mViewGroup;
     protected LinearLayout mContentRootView;
     protected TitleBar mTitleBar;
-    protected LinearLayout rootLayout;
+    protected RelativeLayout rootLayout;
     protected T mVideoView;
     protected Activity mActivity;
 

@@ -1,21 +1,16 @@
 package com.quyum.hyppe.ui.login.fragment;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.InputType;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.quyum.hyppe.R;
 import com.quyum.hyppe.base.BaseFragment;
 import com.quyum.hyppe.ui.home.activity.MainActivity;
 import com.quyum.hyppe.ui.login.activity.ForgetActivity;
-import com.quyum.hyppe.utils.ToastUtils;
 import com.quyum.hyppe.weight.TitleBar;
 
 import butterknife.BindView;
@@ -93,6 +88,7 @@ public class LoginFragment extends BaseFragment {
 //                    return;
 //                }
                 startActivity(new Intent(mActivity, MainActivity.class));
+                mActivity.finish();
                 break;
         }
     }

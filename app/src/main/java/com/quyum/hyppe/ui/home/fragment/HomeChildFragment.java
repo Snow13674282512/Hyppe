@@ -26,8 +26,9 @@ import com.dueeeke.videoplayer.util.L;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.quyum.hyppe.R;
-import com.quyum.hyppe.base.BaseVideoFragment;
+import com.quyum.hyppe.base.BaseFragment;
 import com.quyum.hyppe.base.MyApplication;
+import com.quyum.hyppe.config.SystemParams;
 import com.quyum.hyppe.event.PlayerChildSwitchStopEvent;
 import com.quyum.hyppe.event.PlayerStartEvent;
 import com.quyum.hyppe.event.PlayerStopEvent;
@@ -40,16 +41,20 @@ import com.quyum.hyppe.ui.home.bean.FirstLevelBean;
 import com.quyum.hyppe.ui.home.bean.GiftBean;
 import com.quyum.hyppe.ui.home.bean.SecondLevelBean;
 import com.quyum.hyppe.ui.home.bean.TiktokBean;
+import com.quyum.hyppe.ui.home.bean.TopUpBean;
 import com.quyum.hyppe.utils.DataUtil;
 import com.quyum.hyppe.utils.ToastUtils;
 import com.quyum.hyppe.utils.Utils;
 import com.quyum.hyppe.utils.cache.PreloadManager;
 import com.quyum.hyppe.utils.cache.ProxyVideoCacheManager;
+import com.quyum.hyppe.weight.DialogBuilder;
 import com.quyum.hyppe.weight.EmojisPopWindow;
 import com.quyum.hyppe.weight.GiftPopWindow;
 import com.quyum.hyppe.weight.InputTextMsgDialog;
+import com.quyum.hyppe.weight.MyDialog;
 import com.quyum.hyppe.weight.SharePopWindow;
 import com.quyum.hyppe.weight.TitleBar;
+import com.quyum.hyppe.weight.TopUpPopWindow;
 import com.quyum.hyppe.weight.VerticalViewPager;
 import com.quyum.hyppe.weight.controller.TikTokController;
 import com.quyum.hyppe.weight.render.TikTokRenderViewFactory;
@@ -64,7 +69,7 @@ import java.util.List;
 import butterknife.BindView;
 
 @SuppressLint("ValidFragment")
-public class HomeChildFragment extends BaseVideoFragment implements BaseQuickAdapter.RequestLoadMoreListener {
+public class HomeChildFragment extends BaseFragment {
     @BindView(R.id.view_pager)
     ViewPager2 mViewPager;
     @BindView(R.id.swipe_refresh)
@@ -75,11 +80,13 @@ public class HomeChildFragment extends BaseVideoFragment implements BaseQuickAda
     private TikTokController mController;
     private RecyclerView mViewPagerImpl;
     private TikTokAdapter mTikTokAdapter;
+    protected VideoView mVideoView;
 
     private int position = 0;
     GiftPopWindow giftPopWindow;
     EmojisPopWindow emojisPopWindow;
     SharePopWindow sharePopWindow;
+    TopUpPopWindow topUpPopWindow;
     private View.OnClickListener giftOnClickListener;
     private View.OnClickListener followOnClickListener;
     private View.OnClickListener hashOnClickListener;
@@ -99,7 +106,7 @@ public class HomeChildFragment extends BaseVideoFragment implements BaseQuickAda
     private long totalCount = 30;
     private int offsetY;
     Boolean isStart = false;
-
+    MyDialog agreedDialog;
 
     public static HomeChildFragment newInstance(int position) {
         HomeChildFragment fragment = new HomeChildFragment();
@@ -138,7 +145,6 @@ public class HomeChildFragment extends BaseVideoFragment implements BaseQuickAda
                 }
             }
         });
-
     }
 
     private void initVideoView() {
@@ -246,7 +252,7 @@ public class HomeChildFragment extends BaseVideoFragment implements BaseQuickAda
 
     //原始数据 一般是从服务器接口请求过来的
     private void setDataComments() {
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 11; i++) {
             FirstLevelBean firstLevelBean = new FirstLevelBean();
             firstLevelBean.setContent("第" + (i + 1) + "人评论内容" + (i % 3 == 0 ? content + (i + 1) + "次" : ""));
             firstLevelBean.setCreateTime(System.currentTimeMillis());
@@ -326,7 +332,29 @@ public class HomeChildFragment extends BaseVideoFragment implements BaseQuickAda
         rv_dialog_lists.setItemAnimator(new DefaultItemAnimator());
 
         bottomSheetAdapter.setLoadMoreView(new SimpleLoadMoreView());
-        bottomSheetAdapter.setOnLoadMoreListener(this, rv_dialog_lists);
+        bottomSheetAdapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener() {
+            @Override
+            public void onLoadMoreRequested() {
+                if (data.size() >= totalCount) {
+                    bottomSheetAdapter.loadMoreEnd(false);
+                    return;
+                }
+                //加载更多
+                for (int i = 0; i < 10; i++) {
+                    FirstLevelBean firstLevelBean = new FirstLevelBean();
+                    firstLevelBean.setUserName("赵丽颖 add more" + i);
+                    firstLevelBean.setId(bottomSheetAdapter.getItemCount() + (i + 1) + "");
+                    firstLevelBean.setHeadImg("https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1918451189,3095768332&fm=26&gp=0.jpg");
+                    firstLevelBean.setCreateTime(System.currentTimeMillis());
+                    firstLevelBean.setContent("add more" + i);
+                    firstLevelBean.setLikeCount(0);
+                    firstLevelBean.setSecondLevelBeans(new ArrayList<SecondLevelBean>());
+                    data.add(firstLevelBean);
+                }
+                sort();
+                bottomSheetAdapter.loadMoreComplete();
+            }
+        }, rv_dialog_lists);
 
         rv_dialog_lists.setAdapter(bottomSheetAdapter);
 
@@ -351,7 +379,6 @@ public class HomeChildFragment extends BaseVideoFragment implements BaseQuickAda
             @Override
             public void onSlide(@NonNull View bottomSheet, float slideOffset) {
                 slideOffset1 = slideOffset;
-
             }
         });
 
@@ -445,30 +472,6 @@ public class HomeChildFragment extends BaseVideoFragment implements BaseQuickAda
 
     }
 
-    //在项目中是从服务器获取数据，其实就是一级评论分页获取
-    @Override
-    public void onLoadMoreRequested() {
-        if (data.size() >= totalCount) {
-            bottomSheetAdapter.loadMoreEnd(false);
-            return;
-        }
-        //加载更多
-        for (int i = 0; i < 10; i++) {
-            FirstLevelBean firstLevelBean = new FirstLevelBean();
-            firstLevelBean.setUserName("赵丽颖 add more" + i);
-            firstLevelBean.setId(bottomSheetAdapter.getItemCount() + (i + 1) + "");
-            firstLevelBean.setHeadImg("https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1918451189,3095768332&fm=26&gp=0.jpg");
-            firstLevelBean.setCreateTime(System.currentTimeMillis());
-            firstLevelBean.setContent("add more" + i);
-            firstLevelBean.setLikeCount(0);
-            firstLevelBean.setSecondLevelBeans(new ArrayList<SecondLevelBean>());
-            data.add(firstLevelBean);
-        }
-        sort();
-        bottomSheetAdapter.loadMoreComplete();
-
-    }
-
     // item滑动
     public void scrollLocation(int offsetY) {
         try {
@@ -557,6 +560,17 @@ public class HomeChildFragment extends BaseVideoFragment implements BaseQuickAda
         }
     }
 
+    void getTopUpData() {
+        List<TopUpBean.DataBean> list = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            TopUpBean.DataBean dataBean = new TopUpBean.DataBean();
+            dataBean.price = String.valueOf((i + 1) * 100);
+            dataBean.num = String.valueOf((i + 1) * 10);
+            list.add(dataBean);
+            topUpPopWindow.getAdapter().setNewData(list);
+        }
+    }
+
     @Override
     protected void initView(Bundle savedInstanceState) {
         mRootView.setTag(position);
@@ -567,13 +581,38 @@ public class HomeChildFragment extends BaseVideoFragment implements BaseQuickAda
         initEmojisPop();
         getEmojisData();
 
+        initTopUpPop();
+        getTopUpData();
+
         initSharePop();
     }
 
     void initGiftPop() {
         MainActivity mainActivity = (MainActivity) getActivity();
-        giftPopWindow = new GiftPopWindow(mainActivity.getMainRl(), mActivity);
+        giftPopWindow = new GiftPopWindow(mainActivity.getMainRl(), mActivity, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                giftPopWindow.close();
+                if (mVideoView != null) {
+                    mVideoView.pause();
+                }
+                topUpPopWindow.show();
+            }
+        });
         giftPopWindow.setOnCloseListener(new PopupWindow.OnDismissListener() {
+            @Override
+            public void onDismiss() {
+                if (mVideoView != null) {
+                    mVideoView.resume();
+                }
+            }
+        });
+    }
+
+    void initTopUpPop() {
+        MainActivity mainActivity = (MainActivity) getActivity();
+        topUpPopWindow = new TopUpPopWindow(mainActivity.getMainRl(), mActivity);
+        topUpPopWindow.setOnCloseListener(new PopupWindow.OnDismissListener() {
             @Override
             public void onDismiss() {
                 if (mVideoView != null) {
@@ -598,7 +637,7 @@ public class HomeChildFragment extends BaseVideoFragment implements BaseQuickAda
 
     void initSharePop() {
         MainActivity mainActivity = (MainActivity) getActivity();
-        sharePopWindow = new SharePopWindow(mainActivity.getMainRl(), mActivity);
+        sharePopWindow = new SharePopWindow(mainActivity.getMainRl(), mActivity, mVideoList.get(mCurPos).videoDownloadUrl, mVideoList.get(mCurPos).videoPlayUrl);
         sharePopWindow.setOnCloseListener(new PopupWindow.OnDismissListener() {
             @Override
             public void onDismiss() {
@@ -609,18 +648,42 @@ public class HomeChildFragment extends BaseVideoFragment implements BaseQuickAda
         });
     }
 
+    void initAgreedDialog() {
+        agreedDialog = DialogBuilder.selectDialog(mActivity, "Acknowledge", "Message “The ownership of this work belongs to wuhuh dasima. You are not allowed to download this content. If you would like to have the right to download this content, please click the more information or private message to consult with the owner. If malicious happened, the owner has the rights and evidences to file a lawsuit against the downloader.”",
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        agreedDialog.cancel();
+                        if (giftPopWindow.getAdapter().getData().size() > 0) {
+                            giftPopWindow.show();
+                            if (mVideoView != null) {
+                                mVideoView.pause();
+                            }
+                        } else {
+                            ToastUtils.showToast("暂未获取到礼物数据,请稍后再试");
+                        }
+                    }
+                });
+        agreedDialog.show();
+    }
+
     void listener() {
         giftOnClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int pos = (int) v.getTag();
-                if (giftPopWindow.getAdapter().getData().size() > 0) {
-                    giftPopWindow.show();
-                    if (mVideoView != null) {
-                        mVideoView.pause();
+                if (SystemParams.getInstance().getGiftAgreement()) {
+                    if (giftPopWindow.getAdapter().getData().size() > 0) {
+                        giftPopWindow.show();
+                        if (mVideoView != null) {
+                            mVideoView.pause();
+                        }
+                    } else {
+                        ToastUtils.showToast("暂未获取到礼物数据,请稍后再试");
                     }
                 } else {
-                    ToastUtils.showToast("暂未获取到礼物数据,请稍后再试");
+                    initAgreedDialog();
+                    SystemParams.getInstance().setGiftAgreement(true);
                 }
             }
         };

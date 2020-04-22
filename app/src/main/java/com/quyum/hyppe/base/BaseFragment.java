@@ -4,18 +4,17 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.IBinder;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
+import com.mingle.widget.LoadingView;
 import com.quyum.hyppe.R;
 import com.quyum.hyppe.config.SystemParams;
 import com.quyum.hyppe.event.FinishEvent;
@@ -36,7 +35,7 @@ public abstract class BaseFragment extends RxFragment {
     protected ViewGroup mViewGroup;
     protected LinearLayout mContentRootView;
     protected TitleBar mTitleBar;
-    protected LinearLayout rootLayout;
+    protected RelativeLayout rootLayout;
 
     protected Activity mActivity;
 
@@ -45,6 +44,8 @@ public abstract class BaseFragment extends RxFragment {
     protected boolean mIsVisible;
 
     protected boolean mIsPrepare;
+
+    protected LoadingView loadingView;
 
     private Unbinder mUnBinder;
 
@@ -64,6 +65,7 @@ public abstract class BaseFragment extends RxFragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mRootView = inflater.inflate(R.layout.base_fragment, container, false);
         rootLayout = mRootView.findViewById(R.id.rootView_baseFragment);
+        loadingView = mRootView.findViewById(R.id.loadView);
         basicInitialize();
 
         //点击空白区域系统软键盘消失

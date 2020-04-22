@@ -30,7 +30,7 @@ public class TikTokController extends BaseVideoController {
 
     {
         //显示调试信息
-        addControlComponent(new DebugInfoView(getContext()));
+//        addControlComponent(new DebugInfoView(getContext()));
     }
 
     @Override

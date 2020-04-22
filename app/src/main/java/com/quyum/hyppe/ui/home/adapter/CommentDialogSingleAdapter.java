@@ -14,6 +14,8 @@ import com.quyum.hyppe.utils.TimeUtils;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
+import static com.quyum.hyppe.base.MyApplication.getContext;
+
 /**
  * @author ganhuanhui
  * 时间：2019/12/19 0019
@@ -38,7 +40,7 @@ public class CommentDialogSingleAdapter extends BaseQuickAdapter<FirstLevelBean,
         helper.setText(R.id.time_tv, time);
         helper.setText(R.id.name_tv, TextUtils.isEmpty(item.getUserName()) ? " " : item.getUserName());
 
-        Glide.with(mContext).load(item.getHeadImg()).into(iv_header);
+        Glide.with(getContext()).load(item.getHeadImg()).into(iv_header);
 
     }
 }

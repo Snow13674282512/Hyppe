@@ -4,7 +4,6 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.quyum.hyppe.R;
 import com.quyum.hyppe.ui.home.bean.EmojisBean;
-import com.quyum.hyppe.ui.home.bean.GiftBean;
 
 /**
  * <pre>

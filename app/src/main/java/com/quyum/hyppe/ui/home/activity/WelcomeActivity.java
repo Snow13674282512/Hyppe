@@ -80,7 +80,6 @@ public class WelcomeActivity extends BaseActivity {
         APPApi.getHttpService().login(SystemParams.getInstance().getMobile(), SystemParams.getInstance().getPassword(), null)
                 .compose(XApi.getApiTransformer())
                 .compose(XApi.getScheduler())
-                .compose(this.bindToLifecycle())
                 .subscribe(new ApiSubscriber<UserBean>() {
                     @Override
                     protected void onFail(NetError error) {

@@ -1,7 +1,7 @@
 package com.quyum.hyppe.weight;
 
 import android.content.Context;
-import android.os.Handler;
+import android.content.Intent;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,22 +10,23 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
-import androidx.recyclerview.widget.LinearLayoutManager;
-
-import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.quyum.hyppe.R;
-import com.quyum.hyppe.ui.home.adapter.PopEmojisAdapter;
-import com.quyum.hyppe.ui.home.bean.EmojisBean;
+import com.quyum.hyppe.config.SystemParams;
+import com.quyum.hyppe.ui.home.activity.ReportActivity;
 import com.quyum.hyppe.utils.ToastUtils;
 
 public class SharePopWindow {
     private CustomPopWindow customPopWindow;
     private Context context;
     private View linearLayout;
+    private String content;
+    private MyDialog myDialog;
+    private String id;
 
-    public SharePopWindow(View linearLayout, Context context) {
+    public SharePopWindow(View linearLayout, Context context, String url, String id) {
         this.linearLayout = linearLayout;
         this.context = context;
+        this.id = id;
         View contentView = LayoutInflater.from(context).inflate(R.layout.pop_share, null);
         handleNation(contentView);
         customPopWindow = new CustomPopWindow.PopupWindowBuilder(context)
@@ -33,6 +34,17 @@ public class SharePopWindow {
                 .setAnimationStyle(R.style.anim_gift_pop)
                 .size(linearLayout.getWidth(), ViewGroup.LayoutParams.WRAP_CONTENT)
                 .create();
+        initDialog();
+    }
+
+    void initDialog() {
+        myDialog = DialogBuilder.selectDialog(context, "Agreed", content, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                myDialog.cancel();
+                download();
+            }
+        });
     }
 
     public void show() {
@@ -68,13 +80,19 @@ public class SharePopWindow {
         reportLl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                context.startActivity(new Intent(context, ReportActivity.class).putExtra("data", id));
             }
         });
         downloadLl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                customPopWindow.dissmiss();
+                if (SystemParams.getInstance().getGiftAgreement()) {
+                    download();
+                } else {
+                    myDialog.show();
+                    SystemParams.getInstance().setGiftAgreement(true);
+                }
             }
         });
 
@@ -84,6 +102,10 @@ public class SharePopWindow {
                 customPopWindow.dissmiss();
             }
         });
+    }
+
+    void download() {
+        DialogBuilder.hintDialog(context);
     }
 
     public void setOnCloseListener(PopupWindow.OnDismissListener onDismissListener) {

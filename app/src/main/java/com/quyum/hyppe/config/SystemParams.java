@@ -58,6 +58,26 @@ public class SystemParams {
         editor.commit();
     }
 
+    public Boolean getDowAgreement() {
+        return sharedPrederences.getBoolean("dowAgreement", false);
+    }
+
+    public void setDowAgreement(Boolean value) {
+        Editor editor = sharedPrederences.edit();
+        editor.putBoolean("dowAgreement", value);
+        editor.commit();
+    }
+
+    public Boolean getGiftAgreement() {
+        return sharedPrederences.getBoolean("giftAgreement", false);
+    }
+
+    public void setGiftAgreement(Boolean value) {
+        Editor editor = sharedPrederences.edit();
+        editor.putBoolean("giftAgreement", value);
+        editor.commit();
+    }
+
     public String getLonThree() {
         return sharedPrederences.getString("lonThree", null);
     }

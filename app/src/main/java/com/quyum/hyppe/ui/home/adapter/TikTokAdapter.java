@@ -1,6 +1,7 @@
 package com.quyum.hyppe.ui.home.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.quyum.hyppe.R;
 import com.quyum.hyppe.base.MyApplication;
+import com.quyum.hyppe.ui.home.activity.HomePageActivity;
 import com.quyum.hyppe.ui.home.bean.TiktokBean;
 import com.quyum.hyppe.utils.cache.PreloadManager;
 import com.quyum.hyppe.weight.component.TikTokView;
@@ -96,6 +98,13 @@ public class TikTokAdapter extends RecyclerView.Adapter<TikTokAdapter.ViewHolder
 
         holder.commentsBt.setTag(position);
         holder.commentsBt.setOnClickListener(commentsOnClickListener);
+
+        holder.iconIv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                context.startActivity(new Intent(context, HomePageActivity.class));
+            }
+        });
     }
 
     @Override

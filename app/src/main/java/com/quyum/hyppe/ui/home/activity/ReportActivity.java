@@ -10,9 +10,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.quyum.hyppe.R;
 import com.quyum.hyppe.base.BaseActivity;
+import com.quyum.hyppe.event.ReportFinishEvent;
 import com.quyum.hyppe.ui.home.adapter.ReportAdapter;
 import com.quyum.hyppe.ui.home.bean.ReportBean;
 import com.quyum.hyppe.weight.TitleBar;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -98,7 +103,15 @@ public class ReportActivity extends BaseActivity {
 
     @Override
     protected void initData(Bundle savedInstanceState) {
+        if (!EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().register(this);
+        }
         getData();
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void finish(ReportFinishEvent reportFinishEvent) {
+        finish();
     }
 
     void getData() {

@@ -12,7 +12,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="165dp"
         android:gravity="center"
-        android:text="noData"
+        android:text=""
         android:textColor="@color/white"
         android:textSize="12sp" />
 

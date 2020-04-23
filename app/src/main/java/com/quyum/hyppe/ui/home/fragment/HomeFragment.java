@@ -1,5 +1,6 @@
 package com.quyum.hyppe.ui.home.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -16,6 +17,7 @@ import com.quyum.hyppe.base.MyApplication;
 import com.quyum.hyppe.event.HomeLeftEvent;
 import com.quyum.hyppe.event.PlayerChildSwitchStopEvent;
 import com.quyum.hyppe.event.PlayerStartEvent;
+import com.quyum.hyppe.ui.home.activity.HomeSearchActivity;
 import com.quyum.hyppe.weight.SlidingScaleTabLayout.SlidingScaleTabLayout;
 import com.quyum.hyppe.weight.TitleBar;
 
@@ -137,6 +139,7 @@ public class HomeFragment extends BaseFragment {
                 EventBus.getDefault().post(new HomeLeftEvent());
                 break;
             case R.id.search_iv:
+                startActivity(new Intent(mActivity, HomeSearchActivity.class));
                 break;
         }
     }

@@ -85,6 +85,7 @@ public class UserBean extends BaseModel implements Serializable {
         public String ui_sign_day;
         public String yiji;
         public String erji;
+        public Boolean isSelect = false;
         public String ui_realName;
         public String ui_idCard;
         public String ui_cardNo;

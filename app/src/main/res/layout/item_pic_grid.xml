@@ -1,15 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:background="@color/them">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="88dp"
+    android:layout_height="88dp">
 
-    <RelativeLayout
+    <com.qmuiteam.qmui.widget.QMUIRadiusImageView
+        android:id="@+id/image_iv"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:background="#20ffffff">
+        android:layout_alignParentBottom="true"
+        app:qmui_corner_radius="4dp" />
 
-        <com.qmuiteam.qmui.widget.QMUIRadiusImageView
+    <RelativeLayout
+        android:id="@+id/add_pic_rl"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/bg_add_pic">
+
+        <ImageView
             android:id="@+id/add_iv"
             android:layout_width="25dp"
             android:layout_height="25dp"
@@ -21,13 +30,20 @@
             android:id="@+id/num_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
             android:layout_below="@id/add_iv"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="5dp"
+            android:gravity="center_horizontal"
             android:text="0/4
                  (Must be)"
             android:textColor="#999999"
             android:textSize="10sp" />
     </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/delete_iv"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/icon_jubao_shanchu" />
 </RelativeLayout>

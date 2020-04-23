@@ -89,7 +89,48 @@ public class LoginFragment extends BaseFragment {
 //                }
                 startActivity(new Intent(mActivity, MainActivity.class));
                 mActivity.finish();
+//                byte[] bytes = hexStringToBytes("0209800500");
+//                for (byte item : bytes) {
+//                    Log.e("sdfsdfa", item + "");
+//                }
+//                Log.e("asdasfasf",formatHexString(bytes, true));
                 break;
         }
+    }
+
+    private String formatHexString(byte[] data, boolean addSpace) {
+        if (data == null || data.length < 1)
+            return null;
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < data.length; i++) {
+            String hex = Integer.toHexString(data[i] & 0xFF);
+            if (hex.length() == 1) {
+                hex = '0' + hex;
+            }
+            sb.append(hex);
+            if (addSpace)
+                sb.append(" ");
+        }
+        return sb.toString().trim();
+    }
+
+    private byte[] hexStringToBytes(String hexString) {
+        if (hexString == null || hexString.equals("")) {
+            return null;
+        }
+        hexString = hexString.trim();
+        hexString = hexString.toUpperCase();
+        int length = hexString.length() / 2;
+        char[] hexChars = hexString.toCharArray();
+        byte[] d = new byte[length];
+        for (int i = 0; i < length; i++) {
+            int pos = i * 2;
+            d[i] = (byte) (charToByte(hexChars[pos]) << 4 | charToByte(hexChars[pos + 1]));
+        }
+        return d;
+    }
+
+    private byte charToByte(char c) {
+        return (byte) "0123456789ABCDEF".indexOf(c);
     }
 }

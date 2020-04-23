@@ -11,17 +11,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.quyum.hyppe.R;
-import com.quyum.hyppe.api.APPApi;
 import com.quyum.hyppe.base.BaseFragment;
-import com.quyum.hyppe.base.MyApplication;
-import com.quyum.hyppe.net.ApiSubscriber;
-import com.quyum.hyppe.net.NetError;
-import com.quyum.hyppe.net.XApi;
 import com.quyum.hyppe.ui.home.activity.TikTokActivity;
 import com.quyum.hyppe.ui.home.adapter.HomePageAdapter;
-import com.quyum.hyppe.ui.home.bean.ReportBean;
 import com.quyum.hyppe.ui.home.bean.TiktokBean;
 import com.quyum.hyppe.utils.DataUtil;
 import com.quyum.hyppe.utils.GridSpacingItemDecoration;
@@ -85,6 +78,14 @@ public class HomePagFragment extends BaseFragment {
 
             }
         });
+        adapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener() {
+            @Override
+            public void onLoadMoreRequested() {
+                List<TiktokBean> tiktokBeans = DataUtil.getTiktokDataFromAssets(getActivity());
+                adapter.addData(tiktokBeans);
+                adapter.loadMoreEnd();
+            }
+        }, recyclerView);
     }
 
     void setData() {

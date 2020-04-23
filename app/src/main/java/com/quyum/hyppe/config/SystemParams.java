@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -55,6 +57,77 @@ public class SystemParams {
     public void setLatThree(String value) {
         Editor editor = sharedPrederences.edit();
         editor.putString("latThree", value);
+        editor.commit();
+    }
+
+    public ArrayList<String> getSearch() {
+        ArrayList<String> list = new ArrayList<>();
+        if (sharedPrederences.getStringSet("searchHistory", null) != null) {
+            Set<String> staffsSet = sharedPrederences.getStringSet("searchHistory", null);
+            list = new ArrayList<>(staffsSet);
+        }
+        return list;
+    }
+
+    public void setSearch(String value) {
+        ArrayList<String> searchList = new ArrayList<>();
+        if (sharedPrederences.getStringSet("searchHistory", null) != null) {
+            Set<String> staffsSet = sharedPrederences.getStringSet("searchHistory", null);
+            searchList = new ArrayList<>(staffsSet);
+        }
+        if (searchList.size() == 10) {
+            Boolean isHave = false;
+            String items = null;
+            for (String item : searchList) {
+                if (item.equals(value)) {
+                    isHave = true;
+                    items = item;
+                }
+            }
+            if (isHave) {
+                searchList.remove(items);
+            } else {
+                searchList.remove(0);
+            }
+            searchList.add(0,value);
+        } else {
+            Boolean isHave = false;
+            String items = null;
+            for (String item : searchList) {
+                if (item.equals(value)) {
+                    isHave = true;
+                    items = item;
+                }
+            }
+            if (isHave) {
+                searchList.remove(items);
+            }
+            searchList.add(0,value);
+        }
+
+        Set result = new HashSet(searchList);
+        Editor editor = sharedPrederences.edit();
+        editor.putStringSet("searchHistory", result);
+        editor.commit();
+    }
+
+    public void removeSearch(String value) {
+        ArrayList<String> searchList = new ArrayList<>();
+        if (sharedPrederences.getStringSet("searchHistory", null) != null) {
+            Set<String> staffsSet = sharedPrederences.getStringSet("searchHistory", null);
+            searchList = new ArrayList<>(staffsSet);
+        }
+        String items = null;
+        for (String item : searchList) {
+            if (item.equals(value)) {
+                items = item;
+            }
+        }
+        searchList.remove(items);
+
+        Set result = new HashSet(searchList);
+        Editor editor = sharedPrederences.edit();
+        editor.putStringSet("searchHistory", result);
         editor.commit();
     }
 

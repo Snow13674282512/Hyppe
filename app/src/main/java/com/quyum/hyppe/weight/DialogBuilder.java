@@ -26,7 +26,7 @@ public class DialogBuilder {
         TextView cancelTv = view.findViewById(R.id.cancel_tv);
         TextView okTv = view.findViewById(R.id.ok_tv);
         View bottomCenterView = view.findViewById(R.id.bottom_center_line);
-        if (okStr.equals("Acknowledge")) {
+        if (okStr.equals("Acknowledge") || okStr.equals("Back to the home")) {
             cancelTv.setVisibility(View.GONE);
             bottomCenterView.setVisibility(View.GONE);
         }

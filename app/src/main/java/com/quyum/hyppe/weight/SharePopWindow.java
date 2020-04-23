@@ -80,6 +80,7 @@ public class SharePopWindow {
         reportLl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                customPopWindow.dissmiss();
                 context.startActivity(new Intent(context, ReportActivity.class).putExtra("data", id));
             }
         });

@@ -76,7 +76,7 @@
         android:gravity="top|left"
         android:hint="Describe in detail the reasons for reporting..."
         android:maxLength="200"
-        android:minHeight="120dp"
+        android:minHeight="80dp"
         android:textColor="@color/white"
         android:textColorHint="#40ffffff"
         android:textSize="14sp" />
@@ -87,7 +87,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="15dp"
-        android:layout_marginRight="15dp" />
+        android:layout_marginBottom="15dp" />
 
     <View
         android:layout_width="match_parent"

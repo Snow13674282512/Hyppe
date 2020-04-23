@@ -104,9 +104,7 @@ public class HomeSearchActivity extends BaseActivity {
                             return true;
                         } else {
                             SystemParams.getInstance().setSearch(searchEt.getText().toString().trim());
-                            ArrayList<String> list = SystemParams.getInstance().getSearch();
-                            Collections.reverse(list);
-                            historySearchAdapter.setNewData(list);
+                            historySearchAdapter.setNewData(SystemParams.getInstance().getSearch());
                             topSearchLl.setVisibility(View.GONE);
                             historySearchLl.setVisibility(View.GONE);
                             viewPagerLl.setVisibility(View.VISIBLE);
@@ -169,9 +167,7 @@ public class HomeSearchActivity extends BaseActivity {
                         historySearchLl.setVisibility(View.VISIBLE);
                         topSearchLl.setVisibility(View.GONE);
                     }
-                    ArrayList<String> list = SystemParams.getInstance().getSearch();
-                    Collections.reverse(list);
-                    historySearchAdapter.setNewData(list);
+                    historySearchAdapter.setNewData(SystemParams.getInstance().getSearch());
                 }
 //                else {
 //                    historySearchLl.setVisibility(View.GONE);
@@ -272,9 +268,7 @@ public class HomeSearchActivity extends BaseActivity {
         historySearchLl.setVisibility(View.GONE);
         viewPagerLl.setVisibility(View.VISIBLE);
         SystemParams.getInstance().setSearch(searchEt.getText().toString().trim());
-        ArrayList<String> list = SystemParams.getInstance().getSearch();
-        Collections.reverse(list);
-        historySearchAdapter.setNewData(list);
+        historySearchAdapter.setNewData(SystemParams.getInstance().getSearch());
         searchStr = searchEt.getText().toString().trim();
         EventBus.getDefault().post(new HomeSearchEvent());
     }

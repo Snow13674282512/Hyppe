@@ -3,9 +3,13 @@ package com.quyum.hyppe.config;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.text.TextUtils;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -60,74 +64,79 @@ public class SystemParams {
         editor.commit();
     }
 
-    public ArrayList<String> getSearch() {
-        ArrayList<String> list = new ArrayList<>();
-        if (sharedPrederences.getStringSet("searchHistory", null) != null) {
-            Set<String> staffsSet = sharedPrederences.getStringSet("searchHistory", null);
-            list = new ArrayList<>(staffsSet);
+    public List<String> getSearch() {
+        List<String> list = new ArrayList<>();
+        if (!TextUtils.isEmpty(sharedPrederences.getString("searchHistory", ""))) {
+            list = Arrays.asList(sharedPrederences.getString("searchHistory", "").split(","));
         }
-        return list;
+        List searchList = new ArrayList(list);
+        return searchList;
     }
 
     public void setSearch(String value) {
-        ArrayList<String> searchList = new ArrayList<>();
-        if (sharedPrederences.getStringSet("searchHistory", null) != null) {
-            Set<String> staffsSet = sharedPrederences.getStringSet("searchHistory", null);
-            searchList = new ArrayList<>(staffsSet);
+        List<String> list = new ArrayList<>();
+        if (!TextUtils.isEmpty(sharedPrederences.getString("searchHistory", ""))) {
+            list = Arrays.asList(sharedPrederences.getString("searchHistory", "").split(","));
         }
+        List searchList = new ArrayList(list);
         if (searchList.size() == 10) {
             Boolean isHave = false;
-            String items = null;
-            for (String item : searchList) {
-                if (item.equals(value)) {
+            for (int i = searchList.size() - 1; i >= 0; i--) {
+                if (searchList.get(i).equals(value)) {
+                    searchList.remove(i);
                     isHave = true;
-                    items = item;
                 }
             }
             if (isHave) {
-                searchList.remove(items);
+                searchList.add(0, value);
             } else {
-                searchList.remove(0);
+                searchList.remove(searchList.size()-1);
+                searchList.add(0, value);
             }
-            searchList.add(0,value);
+        } else if (searchList.size() == 0) {
+            searchList.add(value);
         } else {
-            Boolean isHave = false;
-            String items = null;
-            for (String item : searchList) {
-                if (item.equals(value)) {
-                    isHave = true;
-                    items = item;
+            for (int i = searchList.size() - 1; i >= 0; i--) {
+                if (searchList.get(i).equals(value)) {
+                    searchList.remove(i);
                 }
             }
-            if (isHave) {
-                searchList.remove(items);
-            }
-            searchList.add(0,value);
+            searchList.add(0, value);
         }
-
-        Set result = new HashSet(searchList);
+        StringBuffer str2 = new StringBuffer();
+        for (Iterator<String> iterator = searchList.iterator(); iterator.hasNext(); ) {
+            String string =  iterator.next();
+            str2.append(string);
+            if (iterator.hasNext()) {
+                str2.append(",");
+            }
+        }
         Editor editor = sharedPrederences.edit();
-        editor.putStringSet("searchHistory", result);
+        editor.putString("searchHistory", String.valueOf(str2));
         editor.commit();
     }
 
     public void removeSearch(String value) {
-        ArrayList<String> searchList = new ArrayList<>();
-        if (sharedPrederences.getStringSet("searchHistory", null) != null) {
-            Set<String> staffsSet = sharedPrederences.getStringSet("searchHistory", null);
-            searchList = new ArrayList<>(staffsSet);
+        List<String> list = new ArrayList<>();
+        if (!TextUtils.isEmpty(sharedPrederences.getString("searchHistory", ""))) {
+            list = Arrays.asList(sharedPrederences.getString("searchHistory", "").split(","));
         }
-        String items = null;
-        for (String item : searchList) {
-            if (item.equals(value)) {
-                items = item;
+        List searchList = new ArrayList(list);
+        for (int i = searchList.size() - 1; i >= 0; i--) {
+            if (searchList.get(i).equals(value)) {
+                searchList.remove(i);
             }
         }
-        searchList.remove(items);
-
-        Set result = new HashSet(searchList);
+        StringBuffer str2 = new StringBuffer();
+        for (Iterator<String> iterator = searchList.iterator(); iterator.hasNext(); ) {
+            String string =  iterator.next();
+            str2.append(string);
+            if (iterator.hasNext()) {
+                str2.append(",");
+            }
+        }
         Editor editor = sharedPrederences.edit();
-        editor.putStringSet("searchHistory", result);
+        editor.putString("searchHistory", String.valueOf(str2));
         editor.commit();
     }
 

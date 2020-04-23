@@ -147,7 +147,6 @@ public class HomeSearchExploreFragment extends BaseFragment {
                 recyclerView.post(new Runnable() {
                     @Override
                     public void run() {
-                        ToastUtils.showToast(searchStr);
                         refreshFinish();
                         adapter.setNewData(tiktokBeans);
                         loadingView.setVisibility(View.GONE);

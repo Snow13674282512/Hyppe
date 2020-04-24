@@ -105,4 +105,5 @@ dependencies {
     implementation 'com.qmuiteam:qmui:2.0.0-alpha06'
     implementation "com.qmuiteam:arch:2.0.0-alpha06"
     implementation 'com.github.HuanTanSheng:EasyPhotos:3.0.4' //androidx版本，支持android 10，永久维护
+    implementation 'org.jsoup:jsoup:1.9.2'
 }

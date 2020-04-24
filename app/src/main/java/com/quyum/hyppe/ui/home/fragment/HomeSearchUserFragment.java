@@ -46,7 +46,7 @@ public class HomeSearchUserFragment extends BaseFragment {
 
     @Override
     protected int setLayoutResourceId() {
-        return R.layout.recycler_layout;
+        return R.layout.layout_recycler;
     }
 
     @Override
@@ -114,7 +114,7 @@ public class HomeSearchUserFragment extends BaseFragment {
             list.add(item);
         }
         refreshFinish();
-        if (page == 1) {
+        if (page == 0) {
             adapter.setNewData(list);
         } else {
             adapter.addData(list);

@@ -21,6 +21,7 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
+import com.mingle.widget.LoadingView;
 import com.qmuiteam.qmui.BuildConfig;
 import com.qmuiteam.qmui.arch.QMUIActivity;
 import com.qmuiteam.qmui.skin.QMUISkinManager;
@@ -56,6 +57,7 @@ public abstract class BaseActivity extends QMUIActivity {
     protected RelativeLayout titleRootRl;
     private RxPermissions rxPermissions;
     private Unbinder mUnBinder;
+    protected LoadingView loadingView;
 //    private MyApplication application;
 
     @Override
@@ -150,6 +152,7 @@ public abstract class BaseActivity extends QMUIActivity {
         mTitleBar = findViewById(R.id.titleBar);
         bottomView = findViewById(R.id.bottom_view);
         titleRootRl = findViewById(R.id.title_root_rl);
+        loadingView = mRootView.findViewById(R.id.loadView);
         mRootView.setBackgroundResource(getActivityBg());
     }
 

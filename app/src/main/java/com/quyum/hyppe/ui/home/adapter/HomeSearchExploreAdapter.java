@@ -30,8 +30,10 @@ public class HomeSearchExploreAdapter extends BaseQuickAdapter<TiktokBean, BaseV
         helper.setText(R.id.num_tv, String.valueOf(item.likeCount));
         if (item.authorSex == 0) {
             helper.setBackgroundRes(R.id.like_iv, R.drawable.icon_sousuojieguo_xihuande);
+            helper.setVisible(R.id.distance_tv, true);
         } else {
             helper.setBackgroundRes(R.id.like_iv, R.drawable.icon_suosoujieguo_weixihuande);
+            helper.setVisible(R.id.distance_tv, false);
         }
         Glide.with(getContext())
                 .load(item.coverImgUrl)

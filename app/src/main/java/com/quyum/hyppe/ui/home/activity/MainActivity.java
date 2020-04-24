@@ -23,8 +23,8 @@ import com.quyum.hyppe.event.FinishEvent;
 import com.quyum.hyppe.event.HomeLeftEvent;
 import com.quyum.hyppe.event.PlayerStartEvent;
 import com.quyum.hyppe.event.PlayerStopEvent;
+import com.quyum.hyppe.ui.home.fragment.ChannelsFragment;
 import com.quyum.hyppe.ui.home.fragment.HomeFragment;
-import com.quyum.hyppe.ui.login.fragment.RegisterFragment;
 import com.quyum.hyppe.weight.TitleBar;
 
 import org.greenrobot.eventbus.EventBus;
@@ -102,17 +102,20 @@ public class MainActivity extends BaseMainActivity {
 
             @Override
             public void onDrawerOpened(@NonNull View drawerView) {
-
+                if (MyApplication.isAtHome) {
+                    EventBus.getDefault().post(new PlayerStopEvent());
+                }
             }
 
             @Override
             public void onDrawerClosed(@NonNull View drawerView) {
-
+                if (MyApplication.isAtHome) {
+                    EventBus.getDefault().post(new PlayerStartEvent());
+                }
             }
 
             @Override
             public void onDrawerStateChanged(int newState) {
-
             }
         });
     }
@@ -141,12 +144,41 @@ public class MainActivity extends BaseMainActivity {
     protected void initView() {
         fragmentList = new ArrayList<>();
         fragmentList.add(HomeFragment.newInstance());
-        fragmentList.add(RegisterFragment.newInstance());
+        fragmentList.add(ChannelsFragment.newInstance());
         viewPager.setOffscreenPageLimit(1);
         viewPager.setAdapter(new MyPagerAdapter(getSupportFragmentManager(), fragmentList));
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                if (position == 0) {
+                    viewPager.setCurrentItem(0);
+                    oneView.setVisibility(View.VISIBLE);
+                    twoView.setVisibility(View.GONE);
+                    MyApplication.isAtHome = true;
+                    EventBus.getDefault().post(new PlayerStartEvent());
+                } else {
+                    viewPager.setCurrentItem(1);
+                    oneView.setVisibility(View.GONE);
+                    twoView.setVisibility(View.VISIBLE);
+                    MyApplication.isAtHome = false;
+                    EventBus.getDefault().post(new PlayerStopEvent());
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
     }
 
-    @OnClick({R.id.one_ll, R.id.publish_iv, R.id.two_ll, R.id.red_history_ll, R.id.sign_in_ll, R.id.wallet_ll, R.id.friend_ll, R.id.drafts_ll, R.id.message_ll, R.id.ad_ll, R.id.setting_ll, R.id.certification_ll})
+    @OnClick({R.id.one_ll, R.id.publish_iv, R.id.two_ll, R.id.red_history_ll, R.id.sign_in_ll, R.id.wallet_ll, R.id.friend_ll, R.id.drafts_ll, R.id.message_ll, R.id.ad_ll,
+            R.id.group_ll, R.id.setting_ll, R.id.certification_ll})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.one_ll:
@@ -166,8 +198,10 @@ public class MainActivity extends BaseMainActivity {
                 EventBus.getDefault().post(new PlayerStopEvent());
                 break;
             case R.id.red_history_ll:
+                startActivity(new Intent(mContext, GiftHistoryActivity.class));
                 break;
             case R.id.sign_in_ll:
+                startActivity(new Intent(mContext, SignInActivity.class));
                 break;
             case R.id.wallet_ll:
                 break;
@@ -178,6 +212,9 @@ public class MainActivity extends BaseMainActivity {
             case R.id.message_ll:
                 break;
             case R.id.ad_ll:
+                break;
+            case R.id.group_ll:
+                startActivity(new Intent(mContext, GroupActivity.class));
                 break;
             case R.id.setting_ll:
                 break;

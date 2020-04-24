@@ -40,7 +40,7 @@
 
             <ImageView
                 android:id="@+id/imageView_left_titlebar"
-                android:layout_width="6dp"
+                android:layout_width="11dp"
                 android:layout_height="20dp"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
@@ -70,13 +70,12 @@
 
             <ImageView
                 android:id="@+id/imageView_right_titleBar"
-                android:layout_width="22dp"
-                android:layout_height="22dp"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="15dp"
-                android:contentDescription="@null"
-                android:scaleType="centerInside" />
+                android:contentDescription="@null" />
 
             <ImageView
                 android:id="@+id/imageView_right_titleBar_two"

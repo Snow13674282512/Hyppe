@@ -7,7 +7,6 @@ import android.text.TextUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
@@ -90,7 +89,7 @@ public class SystemParams {
             if (isHave) {
                 searchList.add(0, value);
             } else {
-                searchList.remove(searchList.size()-1);
+                searchList.remove(searchList.size() - 1);
                 searchList.add(0, value);
             }
         } else if (searchList.size() == 0) {
@@ -105,7 +104,7 @@ public class SystemParams {
         }
         StringBuffer str2 = new StringBuffer();
         for (Iterator<String> iterator = searchList.iterator(); iterator.hasNext(); ) {
-            String string =  iterator.next();
+            String string = iterator.next();
             str2.append(string);
             if (iterator.hasNext()) {
                 str2.append(",");
@@ -129,7 +128,7 @@ public class SystemParams {
         }
         StringBuffer str2 = new StringBuffer();
         for (Iterator<String> iterator = searchList.iterator(); iterator.hasNext(); ) {
-            String string =  iterator.next();
+            String string = iterator.next();
             str2.append(string);
             if (iterator.hasNext()) {
                 str2.append(",");

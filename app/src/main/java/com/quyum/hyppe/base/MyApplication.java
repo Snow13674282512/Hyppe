@@ -40,6 +40,7 @@ public class MyApplication extends Application {
     public static Boolean isAtPlayerOne = true;
     public static Boolean isAtPlayerTwo = false;
     public static Boolean isAtHome = true;
+    public static String searchStr = "";
 
     public static Context getContext() {
         return context;

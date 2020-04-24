@@ -108,6 +108,21 @@
         <activity
             android:name=".ui.home.activity.HomeSearchActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.home.activity.HashTagActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.home.activity.GroupActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.home.activity.GiftHistoryActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.home.activity.SignInActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.home.activity.SignInRuleActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

@@ -19,7 +19,6 @@ import com.quyum.hyppe.ui.home.activity.TikTokActivity;
 import com.quyum.hyppe.ui.home.adapter.HomeSearchExploreAdapter;
 import com.quyum.hyppe.ui.home.bean.TiktokBean;
 import com.quyum.hyppe.utils.DataUtil;
-import com.quyum.hyppe.utils.ToastUtils;
 import com.quyum.hyppe.weight.TitleBar;
 
 import org.greenrobot.eventbus.EventBus;
@@ -49,7 +48,7 @@ public class HomeSearchExploreFragment extends BaseFragment {
 
     @Override
     protected int setLayoutResourceId() {
-        return R.layout.recycler_layout;
+        return R.layout.layout_recycler;
     }
 
     @Override
@@ -89,42 +88,14 @@ public class HomeSearchExploreFragment extends BaseFragment {
             @Override
             public void onLoadMoreRequested() {
                 page++;
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        List<TiktokBean> tiktokBeans = DataUtil.getTiktokDataFromAssets(getActivity());
-
-                        recyclerView.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                refreshFinish();
-                                adapter.loadMoreEnd();
-                                adapter.addData(tiktokBeans);
-                                loadingView.setVisibility(View.GONE);
-                            }
-                        });
-                    }
-                }).start();
+                setData();
             }
         }, recyclerView);
         swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        List<TiktokBean> tiktokBeans = DataUtil.getTiktokDataFromAssets(getActivity());
-
-                        recyclerView.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                refreshFinish();
-                                adapter.setNewData(tiktokBeans);
-                                loadingView.setVisibility(View.GONE);
-                            }
-                        });
-                    }
-                }).start();
+               page = 0;
+               setData();
             }
         });
     }
@@ -148,8 +119,18 @@ public class HomeSearchExploreFragment extends BaseFragment {
                     @Override
                     public void run() {
                         refreshFinish();
-                        adapter.setNewData(tiktokBeans);
+                        if (page == 0) {
+                            adapter.setNewData(tiktokBeans);
+                        } else {
+                            adapter.addData(tiktokBeans);
+                            if (tiktokBeans.size() < 10) {
+                                adapter.loadMoreEnd();
+                            } else {
+                                adapter.loadMoreComplete();
+                            }
+                        }
                         loadingView.setVisibility(View.GONE);
+                        adapter.setEnableLoadMore(true);
                     }
                 });
             }

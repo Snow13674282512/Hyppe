@@ -32,6 +32,7 @@ public class HomePagFragment extends BaseFragment {
     SwipeRefreshLayout swipeRefresh;
     HomePageAdapter adapter = new HomePageAdapter();
     TextView noData;
+    int page = 0;
 
     public static HomePagFragment newInstance(String pos) {
         Bundle args = new Bundle();
@@ -43,7 +44,7 @@ public class HomePagFragment extends BaseFragment {
 
     @Override
     protected int setLayoutResourceId() {
-        return R.layout.recycler_layout;
+        return R.layout.layout_recycler;
     }
 
     @Override
@@ -81,9 +82,8 @@ public class HomePagFragment extends BaseFragment {
         adapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener() {
             @Override
             public void onLoadMoreRequested() {
-                List<TiktokBean> tiktokBeans = DataUtil.getTiktokDataFromAssets(getActivity());
-                adapter.addData(tiktokBeans);
-                adapter.loadMoreEnd();
+                page++;
+                setData();
             }
         }, recyclerView);
     }
@@ -97,8 +97,18 @@ public class HomePagFragment extends BaseFragment {
                 recyclerView.post(new Runnable() {
                     @Override
                     public void run() {
-                        adapter.setNewData(tiktokBeans);
+                        if (page == 0) {
+                            adapter.setNewData(tiktokBeans);
+                        } else {
+                            adapter.addData(tiktokBeans);
+                            if (tiktokBeans.size() < 10) {
+                                adapter.loadMoreEnd();
+                            } else {
+                                adapter.loadMoreComplete();
+                            }
+                        }
                         loadingView.setVisibility(View.GONE);
+                        adapter.setEnableLoadMore(true);
                     }
                 });
             }

@@ -41,7 +41,6 @@ import com.quyum.hyppe.weight.TitleBar;
 import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import butterknife.BindView;
@@ -176,6 +175,53 @@ public class HomeSearchActivity extends BaseActivity {
 //                    }
 //                }
                 return false;
+            }
+        });
+        topAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                String s = ((TopSearchBean.DataBean) adapter.getData().get(position)).content;
+                SystemParams.getInstance().setSearch(s);
+                historySearchAdapter.setNewData(SystemParams.getInstance().getSearch());
+                topSearchLl.setVisibility(View.GONE);
+                historySearchLl.setVisibility(View.GONE);
+                viewPagerLl.setVisibility(View.VISIBLE);
+                searchStr = s;
+                EventBus.getDefault().post(new HomeSearchEvent());
+                searchEt.setText(s);
+                searchEt.setSelection(s.length());//将光标移至文字末尾
+            }
+        });
+
+        recommendedAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                String s = ((TopSearchBean.DataBean) adapter.getData().get(position)).content;
+                SystemParams.getInstance().setSearch(s);
+                historySearchAdapter.setNewData(SystemParams.getInstance().getSearch());
+                topSearchLl.setVisibility(View.GONE);
+                historySearchLl.setVisibility(View.GONE);
+                viewPagerLl.setVisibility(View.VISIBLE);
+                searchStr = s;
+                EventBus.getDefault().post(new HomeSearchEvent());
+                searchEt.setText(s);
+                searchEt.setSelection(s.length());//将光标移至文字末尾
+            }
+        });
+
+        historySearchAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                String s = (String) adapter.getData().get(position);
+                SystemParams.getInstance().setSearch(s);
+                historySearchAdapter.setNewData(SystemParams.getInstance().getSearch());
+                topSearchLl.setVisibility(View.GONE);
+                historySearchLl.setVisibility(View.GONE);
+                viewPagerLl.setVisibility(View.VISIBLE);
+                searchStr = s;
+                EventBus.getDefault().post(new HomeSearchEvent());
+                searchEt.setText(s);
+                searchEt.setSelection(s.length());//将光标移至文字末尾
             }
         });
     }

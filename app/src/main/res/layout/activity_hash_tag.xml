@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/swipe_refresh"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/qmui_config_color_white"
+            app:qmui_skin_background="?attr/app_skin_common_background">
+
+            <com.qmuiteam.qmui.widget.QMUIAppBarLayout
+                android:id="@+id/appbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fitsSystemWindows="true">
+                <!--app:layout_scrollFlags="scroll|enterAlways"-->
+                <com.qmuiteam.qmui.widget.QMUICollapsingTopBarLayout
+                    android:id="@+id/collapsing_topbar_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:minHeight="?attr/qmui_topbar_height"
+                    app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                    app:qmui_collapsedTitleGravity="center"
+                    app:qmui_contentScrim="?attr/qmui_config_color_blue"
+                    app:qmui_expandedTitleGravity="center_horizontal|bottom"
+                    app:qmui_expandedTitleMarginBottom="20dp"
+                    app:qmui_followTopBarCommonSkin="true"
+                    app:qmui_statusBarScrim="?attr/qmui_config_color_blue">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/them"
+                        android:fitsSystemWindows="false"
+                        app:qmui_layout_collapseMode="parallax"
+                        app:qmui_layout_collapseParallaxMultiplier="0.7">
+
+                        <ImageView
+                            android:id="@+id/img_iv"
+                            android:layout_width="71dp"
+                            android:layout_height="71dp"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="74dp"
+                            android:layout_marginBottom="30dp"
+                            android:src="@drawable/placeholder" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="74dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/tag_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="#New years"
+                                android:textColor="@color/white"
+                                android:textSize="16sp" />
+
+                            <TextView
+                                android:id="@+id/content_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="3dp"
+                                android:text="197k times play"
+                                android:textColor="@color/white"
+                                android:textSize="16sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <com.qmuiteam.qmui.widget.QMUITopBar
+                        android:id="@+id/topbar"
+                        android:layout_width="match_parent"
+                        android:layout_height="?attr/qmui_topbar_height"
+                        android:background="@color/qmui_config_color_transparent"
+                        android:fitsSystemWindows="true"
+                        app:qmui_bottomDividerHeight="0px"
+                        app:qmui_layout_collapseMode="pin"
+                        app:qmui_topbar_left_back_drawable_id="@color/transparent" />
+                </com.qmuiteam.qmui.widget.QMUICollapsingTopBarLayout>
+            </com.qmuiteam.qmui.widget.QMUIAppBarLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/them"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+        <View
+            android:id="@+id/top_view_page"
+            android:layout_width="match_parent"
+            android:layout_height="0dp" />
+
+        <RelativeLayout
+            android:id="@+id/top_ly"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/qmui_topbar_height"
+            android:layout_below="@id/top_view_page"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/back_iv"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp"
+                android:src="@drawable/page_back" />
+
+            <TextView
+                android:id="@+id/title_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:text="Maria Roberts"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+        </RelativeLayout>
+    </RelativeLayout>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

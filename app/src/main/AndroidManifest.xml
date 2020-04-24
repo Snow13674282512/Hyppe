@@ -123,6 +123,9 @@
         <activity
             android:name=".ui.home.activity.SignInRuleActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.home.activity.WalletActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

@@ -200,7 +200,7 @@ public class SecondLevelBean implements MultiItemEntity {
     }
 
     @Override
-    public boolean equals( Object obj) {
+    public boolean equals(Object obj) {
         if (obj == null) return false;
         if (!(obj instanceof SecondLevelBean)) return false;
         SecondLevelBean bean = (SecondLevelBean) obj;

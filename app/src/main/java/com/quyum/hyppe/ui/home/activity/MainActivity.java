@@ -105,6 +105,7 @@ public class MainActivity extends BaseMainActivity {
                 if (MyApplication.isAtHome) {
                     EventBus.getDefault().post(new PlayerStopEvent());
                 }
+                MyApplication.isOpen = true;
             }
 
             @Override
@@ -112,6 +113,7 @@ public class MainActivity extends BaseMainActivity {
                 if (MyApplication.isAtHome) {
                     EventBus.getDefault().post(new PlayerStartEvent());
                 }
+                MyApplication.isOpen = false;
             }
 
             @Override
@@ -132,7 +134,7 @@ public class MainActivity extends BaseMainActivity {
     protected void onResume() {
         super.onResume();
         if (MyApplication.isAtHome) {
-            if (!isFirst) {
+            if (!isFirst && !MyApplication.isOpen) {
                 EventBus.getDefault().post(new PlayerStartEvent());
             } else {
                 isFirst = false;
@@ -204,6 +206,7 @@ public class MainActivity extends BaseMainActivity {
                 startActivity(new Intent(mContext, SignInActivity.class));
                 break;
             case R.id.wallet_ll:
+                startActivity(new Intent(mContext, WalletActivity.class));
                 break;
             case R.id.friend_ll:
                 break;

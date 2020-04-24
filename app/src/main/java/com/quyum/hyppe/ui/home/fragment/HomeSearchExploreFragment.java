@@ -94,8 +94,8 @@ public class HomeSearchExploreFragment extends BaseFragment {
         swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-               page = 0;
-               setData();
+                page = 0;
+                setData();
             }
         });
     }

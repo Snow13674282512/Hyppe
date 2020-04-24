@@ -69,7 +69,7 @@ public class ChannelsHashTagFragment extends BaseFragment {
     @Override
     protected void initView(Bundle savedInstanceState) {
         loadingView.setVisibility(View.VISIBLE);
-        recyclerView.setLayoutManager(new LinearLayoutManager(mActivity,RecyclerView.VERTICAL, false));
+        recyclerView.setLayoutManager(new LinearLayoutManager(mActivity, RecyclerView.VERTICAL, false));
         recyclerView.setAdapter(adapter);
         View eView = LayoutInflater.from(getActivity()).inflate(R.layout.layout_no_data, null);
         noData = eView.findViewById(R.id.noDataTv);

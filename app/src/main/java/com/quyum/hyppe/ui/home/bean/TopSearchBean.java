@@ -4,7 +4,7 @@ import com.quyum.hyppe.base.BaseModel;
 
 import java.util.List;
 
-public class TopSearchBean  extends BaseModel {
+public class TopSearchBean extends BaseModel {
     public List<DataBean> data;
 
     @Override

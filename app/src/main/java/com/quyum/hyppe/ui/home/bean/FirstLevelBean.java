@@ -12,7 +12,7 @@ import static com.quyum.hyppe.ui.home.bean.CommentEntity.TYPE_COMMENT_PARENT;
  * 描述：
  */
 public class FirstLevelBean implements MultiItemEntity {
-    
+
     private List<SecondLevelBean> secondLevelBeans;
 
     //一级评论id

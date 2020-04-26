@@ -1,5 +1,7 @@
 package com.quyum.hyppe.ui.home.adapter;
 
+import android.widget.ImageView;
+
 import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
@@ -31,6 +33,6 @@ public class GiftHistoryAdapter extends BaseQuickAdapter<GiftHistoryBean.DataBea
         Glide.with(mContext)
                 .load(item.pic)
                 .apply(MyApplication.options)
-                .into((CircleImageView) helper.getView(R.id.icon_iv));
+                .into((ImageView) helper.getView(R.id.gift_iv));
     }
 }

@@ -126,6 +126,33 @@
         <activity
             android:name=".ui.home.activity.WalletActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.home.activity.WalletCreditActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.home.activity.CreditTopUpActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.home.activity.AddBankActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.home.activity.AddBankNextActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.home.activity.SetPaymentPasswordActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.home.activity.CreditWithdrawalActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.home.activity.WalletPointActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.home.activity.PointTopUpActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.home.activity.PointConversionActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

@@ -1,6 +1,5 @@
 package com.quyum.hyppe.ui.login.fragment;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.text.InputType;
@@ -10,7 +9,6 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.quyum.hyppe.R;
 import com.quyum.hyppe.api.APPApi;
@@ -115,10 +113,12 @@ public class RegisterFragment extends BaseFragment {
                     psEt.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
                     psEt.setSelection(psEt.getText().length());
                     isLook = false;
+                    eyeIv.setImageResource(R.drawable.icon_denglu_mimakejianb);
                 } else {
                     psEt.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
                     psEt.setSelection(psEt.getText().length());
                     isLook = true;
+                    eyeIv.setImageResource(R.drawable.icon_denglu_mimakejian);
                 }
                 break;
             case R.id.c_eye_iv:
@@ -126,10 +126,12 @@ public class RegisterFragment extends BaseFragment {
                     cPsEt.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
                     cPsEt.setSelection(cPsEt.getText().length());
                     isCLook = false;
+                    cEyeIv.setImageResource(R.drawable.icon_denglu_mimakejianb);
                 } else {
                     cPsEt.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
                     cPsEt.setSelection(cPsEt.getText().length());
                     isCLook = true;
+                    cEyeIv.setImageResource(R.drawable.icon_denglu_mimakejian);
                 }
                 break;
             case R.id.login_bt:

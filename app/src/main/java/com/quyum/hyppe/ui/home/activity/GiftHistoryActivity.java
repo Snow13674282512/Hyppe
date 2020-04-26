@@ -72,11 +72,11 @@ public class GiftHistoryActivity extends BaseActivity {
         View eView = LayoutInflater.from(mContext).inflate(R.layout.layout_no_data, null);
         noData = eView.findViewById(R.id.noDataTv);
         adapter.setEmptyView(eView);
+        setData();
     }
 
     @Override
     protected void initData(Bundle savedInstanceState) {
-        setData();
     }
 
     void setData() {

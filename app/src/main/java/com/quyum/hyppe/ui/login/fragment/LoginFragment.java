@@ -69,10 +69,12 @@ public class LoginFragment extends BaseFragment {
                     psEt.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
                     psEt.setSelection(psEt.getText().length());
                     isLook = false;
+                    eyeIv.setImageResource(R.drawable.icon_denglu_mimakejianb);
                 } else {
                     psEt.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
                     psEt.setSelection(psEt.getText().length());
                     isLook = true;
+                    eyeIv.setImageResource(R.drawable.icon_denglu_mimakejian);
                 }
                 break;
             case R.id.forget_tv:

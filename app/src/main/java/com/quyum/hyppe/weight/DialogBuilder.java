@@ -8,6 +8,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.quyum.hyppe.R;
+import com.quyum.hyppe.utils.ToastUtils;
 
 /**
  * Created by Administrator on 2017/8/25.
@@ -26,9 +27,12 @@ public class DialogBuilder {
         TextView cancelTv = view.findViewById(R.id.cancel_tv);
         TextView okTv = view.findViewById(R.id.ok_tv);
         View bottomCenterView = view.findViewById(R.id.bottom_center_line);
-        if (okStr.equals("Acknowledge") || okStr.equals("Back to the home")) {
+        if (okStr.equals("Acknowledge") || okStr.equals("Back to the home") || okStr.equals("Set payment password") || okStr.equals("go back")) {
             cancelTv.setVisibility(View.GONE);
             bottomCenterView.setVisibility(View.GONE);
+        }
+        if (okStr.equals("Top Up")) {
+            cancelTv.setText("Cancel");
         }
         okTv.setText(okStr);
         contentTv.setText(content);
@@ -42,6 +46,36 @@ public class DialogBuilder {
             @Override
             public void onClick(View v) {
                 builder.cancel();
+            }
+        });
+        return builder;
+    }
+
+    /**
+     * 支付密码错误 dialog
+     *
+     * @param context
+     */
+    public static MyDialog passwordErrorDialog(final Context context, View.OnClickListener onClickListener) {
+
+        View view = View.inflate(context, R.layout.dialog_select, null);
+        TextView contentTv = view.findViewById(R.id.content_tv);
+        TextView cancelTv = view.findViewById(R.id.cancel_tv);
+        TextView okTv = view.findViewById(R.id.ok_tv);
+        cancelTv.setText("忘记密码");
+        okTv.setText("重试");
+        contentTv.setText("支付密码错误");
+
+        final MyDialog builder = new MyDialog(context, view, R.style.DialogTheme, Gravity.CENTER);
+        builder.setCancelable(true);
+        builder.setCanceledOnTouchOutside(true);
+
+        okTv.setOnClickListener(onClickListener);
+        cancelTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                builder.cancel();
+                ToastUtils.showToast("改不了！");
             }
         });
         return builder;

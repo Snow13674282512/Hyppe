@@ -1,5 +1,6 @@
 package com.quyum.hyppe.ui.home.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -16,8 +17,6 @@ import com.quyum.hyppe.R;
 import com.quyum.hyppe.base.BaseActivity;
 import com.quyum.hyppe.base.BaseFragment;
 import com.quyum.hyppe.event.WalletEvent;
-import com.quyum.hyppe.ui.home.fragment.HomeSearchExploreFragment;
-import com.quyum.hyppe.ui.home.fragment.HomeSearchUserFragment;
 import com.quyum.hyppe.ui.home.fragment.WalletFragment;
 import com.quyum.hyppe.weight.TitleBar;
 
@@ -27,7 +26,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class WalletActivity extends BaseActivity {
@@ -96,8 +94,10 @@ public class WalletActivity extends BaseActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.credit_ll:
+                startActivity(new Intent(mContext, WalletCreditActivity.class));
                 break;
             case R.id.point_ll:
+                startActivity(new Intent(mContext, WalletPointActivity.class));
                 break;
         }
     }

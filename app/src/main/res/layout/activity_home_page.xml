@@ -167,13 +167,25 @@
                         android:layout_marginRight="15dp"
                         android:gravity="center_vertical">
 
-                        <TextView
+                        <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Maria Roberts"
-                            android:textColor="@color/white"
-                            android:textSize="18sp" />
+                            android:gravity="center_vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Maria Roberts"
+                                android:textColor="@color/white"
+                                android:textSize="18sp" />
+
+                            <ImageView
+                                android:layout_width="29dp"
+                                android:layout_height="24dp"
+                                android:layout_marginLeft="15dp"
+                                android:src="@drawable/icon_dawanghong" />
+                        </LinearLayout>
 
                         <com.qmuiteam.qmui.alpha.QMUIAlphaButton
                             android:id="@+id/follow_bt"

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/them">
+
+    <ImageView
+        android:id="@+id/icon_iv"
+        android:layout_width="match_parent"
+        android:layout_height="375dp"
+        android:layout_centerVertical="true"
+        android:src="@drawable/placeholder" />
+
+    <Button
+        android:id="@+id/update_bt"
+        android:layout_width="98dp"
+        android:layout_height="35dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="34dp"
+        android:background="@drawable/bg_button_icon"
+        android:text="Update"
+        android:textColor="@color/white"
+        android:textSize="14sp" />
+</RelativeLayout>

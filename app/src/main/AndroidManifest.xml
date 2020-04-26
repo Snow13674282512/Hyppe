@@ -153,6 +153,15 @@
         <activity
             android:name=".ui.home.activity.PointConversionActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.home.activity.DraftBoxActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.home.activity.MinePageActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.home.activity.MineIconActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

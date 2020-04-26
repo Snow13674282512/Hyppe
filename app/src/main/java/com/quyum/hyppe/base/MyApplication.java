@@ -32,7 +32,7 @@ import okhttp3.OkHttpClient;
  */
 
 public class MyApplication extends Application {
-    public static RequestOptions options, optionsCircle;
+    public static RequestOptions options, optionsCircle, optionsIcon;
     public static UserBean.DataBean CurrentUser;
     public static boolean startFrist = false;//是否启动过
     private static Context context;
@@ -102,6 +102,12 @@ public class MyApplication extends Application {
         optionsCircle = new RequestOptions()
                 .centerCrop()
                 .placeholder(R.drawable.default_icon)
+                .diskCacheStrategy(DiskCacheStrategy.ALL);
+
+        //个人主页Glide配置
+        optionsIcon = new RequestOptions()
+                .centerCrop()
+                .placeholder(R.drawable.img_wodezhuye_weidenglu_touxiang)
                 .diskCacheStrategy(DiskCacheStrategy.ALL);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {

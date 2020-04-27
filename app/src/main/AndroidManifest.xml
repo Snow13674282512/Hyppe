@@ -208,6 +208,15 @@
         <activity
             android:name=".ui.home.activity.FAQHelpActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.home.activity.UserAgreementActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.home.activity.PaymentSettingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.home.activity.ChangePaymentPasswordActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

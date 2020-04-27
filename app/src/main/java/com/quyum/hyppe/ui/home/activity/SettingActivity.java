@@ -61,12 +61,14 @@ public class SettingActivity extends BaseActivity {
                 startActivity(new Intent(mContext, FeedHelpActivity.class));
                 break;
             case R.id.agreement_ll:
+                startActivity(new Intent(mContext, UserAgreementActivity.class));
                 break;
             case R.id.about_ll:
                 break;
             case R.id.how_to_ll:
                 break;
             case R.id.payment_ll:
+                startActivity(new Intent(mContext, PaymentSettingActivity.class));
                 break;
             case R.id.switch_account_bt:
                 SystemParams.getInstance().setToken(null);

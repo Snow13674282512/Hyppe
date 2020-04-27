@@ -149,4 +149,33 @@ public class DialogBuilder {
         return builder;
     }
 
+    /**
+     * error dialog
+     *
+     * @param context
+     */
+    public static MyDialog errorDialog(final Context context) {
+
+        View view = View.inflate(context, R.layout.dialog_error, null);
+        LinearLayout rootLayout = view.findViewById(R.id.root_layout);
+
+        final MyDialog builder = new MyDialog(context, view, R.style.DialogTheme, Gravity.CENTER);
+        builder.setCancelable(true);
+        builder.setCanceledOnTouchOutside(true);
+        builder.show();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                builder.cancel();
+            }
+        }, 1500);//2秒后执行Runnable中的run方法
+        rootLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                builder.cancel();
+            }
+        });
+        return builder;
+    }
+
 }

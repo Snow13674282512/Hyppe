@@ -46,6 +46,13 @@ public class VerifyCodeView extends RelativeLayout {
         setEditTextListener();
     }
 
+    public void ClearInput() {
+        editText.setText("");
+        for (int i = 0; i < textViews.length; i++) {
+            textViews[i].setText("");
+        }
+    }
+
     public void setIsVisibility(Boolean isVisibility) {
         if (isVisibility) {
             for (int i = 0; i < MAX; i++) {

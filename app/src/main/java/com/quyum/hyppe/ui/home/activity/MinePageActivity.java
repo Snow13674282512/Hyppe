@@ -146,10 +146,13 @@ public class MinePageActivity extends BaseActivity {
                 startActivity(new Intent(mContext, MineIconActivity.class));
                 break;
             case R.id.hyppers_ll:
+                startActivity(new Intent(mContext, FansActivity.class));
                 break;
             case R.id.hupping_ll:
+                startActivity(new Intent(mContext, FollowActivity.class));
                 break;
             case R.id.edit_iv:
+                startActivity(new Intent(mContext, EditMineActivity.class));
                 break;
         }
     }

@@ -3,11 +3,12 @@ package com.quyum.hyppe.ui.home.bean;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import java.io.Serializable;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TiktokBean {
+public class TiktokBean implements Serializable {
 
     /**
      * authorImgUrl : https://p3-dy.byteimg.com/aweme/100x100/1e19c00014b66991215ba.jpeg

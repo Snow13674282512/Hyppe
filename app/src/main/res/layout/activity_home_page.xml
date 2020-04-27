@@ -40,6 +40,7 @@
                     app:qmui_layout_collapseParallaxMultiplier="0.7">
 
                     <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/icon_iv"
                         android:layout_width="87dp"
                         android:layout_height="87dp"
                         android:layout_marginTop="37dp"
@@ -58,6 +59,7 @@
                             android:orientation="vertical">
 
                             <TextView
+                                android:id="@+id/hyppers_tv"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="10"
@@ -81,6 +83,7 @@
                             android:orientation="vertical">
 
                             <TextView
+                                android:id="@+id/hupping_tv"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="80"
@@ -104,6 +107,7 @@
                             android:orientation="vertical">
 
                             <TextView
+                                android:id="@+id/like_tv"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="667"
@@ -174,6 +178,7 @@
                             android:gravity="center_vertical">
 
                             <TextView
+                                android:id="@+id/nick_name_tv"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Maria Roberts"
@@ -181,6 +186,7 @@
                                 android:textSize="18sp" />
 
                             <ImageView
+                                android:id="@+id/vip_iv"
                                 android:layout_width="29dp"
                                 android:layout_height="24dp"
                                 android:layout_marginLeft="15dp"
@@ -230,6 +236,7 @@
                                 android:src="@drawable/icon_tarenzhuye_xingbie" />
 
                             <TextView
+                                android:id="@+id/sex_tv"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Female"
@@ -247,6 +254,7 @@
                             android:paddingRight="6dp">
 
                             <TextView
+                                android:id="@+id/location_tv"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Malaysia"

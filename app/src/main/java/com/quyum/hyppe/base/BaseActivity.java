@@ -32,6 +32,7 @@ import com.quyum.hyppe.config.SystemParams;
 import com.quyum.hyppe.event.FinishEvent;
 import com.quyum.hyppe.net.NetError;
 import com.quyum.hyppe.net.XDroidConf;
+import com.quyum.hyppe.ui.login.activity.LoginAndRegisterActivity;
 import com.quyum.hyppe.utils.StreamUtil;
 import com.quyum.hyppe.utils.ToastUtils;
 import com.quyum.hyppe.weight.TitleBar;
@@ -271,7 +272,7 @@ public abstract class BaseActivity extends QMUIActivity {
                     MyApplication.save();
                     SystemParams.getInstance().setMobile(null);
                     SystemParams.getInstance().setPassword(null);
-//                    LoginAccountActivity.start(mContext);
+                    LoginAndRegisterActivity.start(mContext);
                     EventBus.getDefault().post(new FinishEvent());
                     finish();
                     break;

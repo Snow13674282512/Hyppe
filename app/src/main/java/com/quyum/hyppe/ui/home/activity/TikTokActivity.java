@@ -279,7 +279,7 @@ public class TikTokActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 int pos = (int) v.getTag();
-                startActivity(new Intent(mContext, HashActivity.class));
+                startActivity(new Intent(mContext, HashActivity.class).putExtra("data", mVideoList.get(pos)));
             }
         };
         forwardOnClickListener = new View.OnClickListener() {

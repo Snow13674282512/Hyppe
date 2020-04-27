@@ -224,8 +224,10 @@ public class MainActivity extends BaseMainActivity {
                 startActivity(new Intent(mContext, GroupActivity.class));
                 break;
             case R.id.setting_ll:
+                startActivity(new Intent(mContext, SettingActivity.class));
                 break;
             case R.id.certification_ll:
+                startActivity(new Intent(mContext, RealNameActivity.class));
                 break;
         }
     }

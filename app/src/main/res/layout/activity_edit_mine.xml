@@ -11,6 +11,7 @@
         android:background="#49eeeeee" />
 
     <LinearLayout
+        android:id="@+id/icon_ll"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:gravity="center_vertical">
@@ -25,6 +26,7 @@
             android:textSize="14sp" />
 
         <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/icon_iv"
             android:layout_width="28dp"
             android:layout_height="28dp"
             android:src="@drawable/default_icon" />
@@ -44,6 +46,7 @@
         android:background="#49eeeeee" />
 
     <LinearLayout
+        android:id="@+id/nick_name_ll"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:gravity="center_vertical">
@@ -58,10 +61,11 @@
             android:textSize="14sp" />
 
         <TextView
+            android:id="@+id/nick_name_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="right"
             android:hint="Nick name"
-            android:text="Georgia Hernandez"
             android:textColor="@color/white"
             android:textColorHint="#50ffffff"
             android:textSize="14sp" />
@@ -115,6 +119,7 @@
         android:background="#49eeeeee" />
 
     <LinearLayout
+        android:id="@+id/sex_ll"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:gravity="center_vertical">
@@ -134,18 +139,17 @@
             android:gravity="center_vertical">
 
             <ImageView
+                android:id="@+id/sex_iv"
                 android:layout_width="16dp"
                 android:layout_height="16dp"
                 android:src="@drawable/icon_tarenzhuye_xingbie" />
 
             <TextView
+                android:id="@+id/sex_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:ellipsize="end"
                 android:gravity="right"
-                android:hint="Nick name"
-                android:maxLines="1"
-                android:text="Gender"
+                android:hint="Gender"
                 android:textColor="@color/white"
                 android:textColorHint="#50ffffff"
                 android:textSize="14sp" />
@@ -166,6 +170,7 @@
         android:background="#49eeeeee" />
 
     <LinearLayout
+        android:id="@+id/location_ll"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:gravity="center_vertical">
@@ -175,18 +180,18 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
             android:layout_weight="1"
-            android:text="Nick name"
+            android:text="Location"
             android:textColor="@color/white"
             android:textSize="14sp" />
 
         <TextView
+            android:id="@+id/location_tv"
             android:layout_width="140dp"
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:gravity="right"
-            android:hint="Nick name"
+            android:hint="Location"
             android:maxLines="1"
-            android:text="Georgia Hernandez"
             android:textColor="@color/white"
             android:textColorHint="#50ffffff"
             android:textSize="14sp" />
@@ -206,6 +211,7 @@
         android:background="#49eeeeee" />
 
     <LinearLayout
+        android:id="@+id/bio_ll"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:gravity="center_vertical">
@@ -215,18 +221,18 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
             android:layout_weight="1"
-            android:text="Nick name"
+            android:text="Bio"
             android:textColor="@color/white"
             android:textSize="14sp" />
 
         <TextView
+            android:id="@+id/bio_tv"
             android:layout_width="140dp"
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:gravity="right"
-            android:hint="Nick name"
+            android:hint="Bio"
             android:maxLines="1"
-            android:text="Georgia Hernandez"
             android:textColor="@color/white"
             android:textColorHint="#50ffffff"
             android:textSize="14sp" />

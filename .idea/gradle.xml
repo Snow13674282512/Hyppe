@@ -16,6 +16,7 @@
             <option value="$PROJECT_DIR$/dkplayer-players" />
             <option value="$PROJECT_DIR$/dkplayer-players/exo" />
             <option value="$PROJECT_DIR$/dkplayer-players/ijk" />
+            <option value="$PROJECT_DIR$/dkplayer-ui" />
             <option value="$PROJECT_DIR$/dkplayer-videocache" />
           </set>
         </option>

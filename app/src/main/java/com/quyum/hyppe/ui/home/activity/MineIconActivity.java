@@ -2,6 +2,8 @@ package com.quyum.hyppe.ui.home.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -23,6 +25,8 @@ import butterknife.OnClick;
 public class MineIconActivity extends BaseActivity {
     @BindView(R.id.icon_iv)
     ImageView iconIv;
+    @BindView(R.id.update_bt)
+    Button button;
 
     @Override
     protected int getLayoutId() {
@@ -51,7 +55,11 @@ public class MineIconActivity extends BaseActivity {
 
     @Override
     protected void initData(Bundle savedInstanceState) {
-
+        if (!getIntent().getBooleanExtra("isShowUpDate", true)) {
+            button.setVisibility(View.GONE);
+        }else {
+            button.setVisibility(View.VISIBLE);
+        }
     }
 
     @OnClick(R.id.update_bt)

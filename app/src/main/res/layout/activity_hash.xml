@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/scrollview"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -158,13 +159,14 @@
             android:textColor="@color/white"
             android:textSize="16sp" />
 
-        <ImageView
-            android:id="@+id/image"
+        <com.dueeeke.videoplayer.player.VideoView
+            android:id="@+id/player"
             android:layout_width="280dp"
-            android:layout_height="286dp"
             android:layout_marginTop="15dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/icon_hsah_content" />
+            android:layout_height="286dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <View
             android:layout_width="match_parent"

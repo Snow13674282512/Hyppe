@@ -90,6 +90,7 @@
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".ui.home.activity.HashActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize|screenLayout"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.home.activity.HomePageActivity"
@@ -161,6 +162,51 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.home.activity.MineIconActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.home.activity.EditMineActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.home.activity.InsertNickNameActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.home.activity.BioActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.home.activity.FansActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.home.activity.FollowActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.home.activity.RealNameActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.home.activity.CertificationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.home.activity.SettingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.home.activity.AccountSecurityActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.home.activity.ChangeEmailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.home.activity.ChangePasswordActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.home.activity.ChangePasswordNextActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.home.activity.NotificationSettingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.home.activity.FeedHelpActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.home.activity.FAQHelpActivity"
             android:screenOrientation="portrait" />
     </application>
 

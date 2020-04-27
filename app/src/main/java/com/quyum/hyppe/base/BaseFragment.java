@@ -19,6 +19,7 @@ import com.quyum.hyppe.R;
 import com.quyum.hyppe.config.SystemParams;
 import com.quyum.hyppe.event.FinishEvent;
 import com.quyum.hyppe.net.NetError;
+import com.quyum.hyppe.ui.login.activity.LoginAndRegisterActivity;
 import com.quyum.hyppe.utils.StreamUtil;
 import com.quyum.hyppe.utils.ToastUtils;
 import com.quyum.hyppe.weight.TitleBar;
@@ -226,7 +227,7 @@ public abstract class BaseFragment extends RxFragment {
                     SystemParams.getInstance().setPassword(null);
                     MyApplication.CurrentUser = null;
                     MyApplication.save();
-//                    LoginAccountActivity.start(mActivity);
+                    LoginAndRegisterActivity.start(mActivity);
                     EventBus.getDefault().post(new FinishEvent());
                     mActivity.finish();
                     break;

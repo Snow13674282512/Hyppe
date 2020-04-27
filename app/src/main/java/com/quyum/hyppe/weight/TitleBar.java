@@ -87,6 +87,10 @@ public class TitleBar extends RelativeLayout {
         mNaviButtonRight.setText(res);
     }
 
+    public TextView getRightText() {
+        return mNaviButtonRight;
+    }
+
     public void setRightText(CharSequence text) {
         mNaviButtonRight.setText(text);
     }

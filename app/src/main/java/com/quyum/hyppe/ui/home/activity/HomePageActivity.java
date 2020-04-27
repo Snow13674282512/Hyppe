@@ -9,11 +9,11 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
@@ -21,8 +21,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
-import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.listener.OnItemChildClickListener;
 import com.flyco.tablayout.SlidingTabLayout;
 import com.qmuiteam.qmui.widget.QMUICollapsingTopBarLayout;
 import com.qmuiteam.qmui.widget.QMUITopBar;
@@ -38,7 +36,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class HomePageActivity extends BaseActivity {
     @BindView(R.id.viewpager)
@@ -62,6 +62,30 @@ public class HomePageActivity extends BaseActivity {
     HomePageRecommendAdapter adapter = new HomePageRecommendAdapter();
     @BindView(R.id.follow_bt)
     Button followBt;
+    @BindView(R.id.icon_iv)
+    CircleImageView iconIv;
+    @BindView(R.id.hyppers_tv)
+    TextView hyppersTv;
+    @BindView(R.id.hupping_tv)
+    TextView huppingTv;
+    @BindView(R.id.like_tv)
+    TextView likeTv;
+    @BindView(R.id.nick_name_tv)
+    TextView nickNameTv;
+    @BindView(R.id.vip_iv)
+    ImageView vipIv;
+    @BindView(R.id.info_tv)
+    TextView infoTv;
+    @BindView(R.id.sex_iv)
+    ImageView sexIv;
+    @BindView(R.id.sex_tv)
+    TextView sexTv;
+    @BindView(R.id.location_tv)
+    TextView locationTv;
+    @BindView(R.id.age_tv)
+    TextView ageTv;
+    @BindView(R.id.back_iv)
+    ImageView backIv;
     private List<BaseFragment> fragmentList;
     private String[] tabTitle = {"Posts221", "Gifts34", "Likes2.0w"};
     Boolean isVis = false;
@@ -134,7 +158,7 @@ public class HomePageActivity extends BaseActivity {
         });
     }
 
-    @OnClick({R.id.back_iv, R.id.focus_iv, R.id.recommended_iv, R.id.follow_bt})
+    @OnClick({R.id.back_iv, R.id.icon_iv, R.id.focus_iv, R.id.recommended_iv, R.id.follow_bt})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.focus_iv:
@@ -152,6 +176,9 @@ public class HomePageActivity extends BaseActivity {
                 break;
             case R.id.back_iv:
                 finish();
+                break;
+            case R.id.icon_iv:
+                startActivity(new Intent(mContext, MineIconActivity.class).putExtra("isShowUpDate", false));
                 break;
             case R.id.follow_bt:
                 facusLl.setVisibility(View.VISIBLE);

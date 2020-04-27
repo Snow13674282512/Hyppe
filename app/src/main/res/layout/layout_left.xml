@@ -51,7 +51,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="59dp">
 
-        <LinearLayout
+        <com.qmuiteam.qmui.alpha.QMUIAlphaLinearLayout
             android:id="@+id/red_history_ll"
             android:layout_width="80dp"
             android:layout_height="wrap_content"
@@ -71,9 +71,9 @@
                 android:text="History"
                 android:textColor="@color/white"
                 android:textSize="11sp" />
-        </LinearLayout>
+        </com.qmuiteam.qmui.alpha.QMUIAlphaLinearLayout>
 
-        <LinearLayout
+        <com.qmuiteam.qmui.alpha.QMUIAlphaLinearLayout
             android:id="@+id/sign_in_ll"
             android:layout_width="80dp"
             android:layout_height="wrap_content"
@@ -93,9 +93,9 @@
                 android:text="Daily Sign in"
                 android:textColor="@color/white"
                 android:textSize="11sp" />
-        </LinearLayout>
+        </com.qmuiteam.qmui.alpha.QMUIAlphaLinearLayout>
 
-        <LinearLayout
+        <com.qmuiteam.qmui.alpha.QMUIAlphaLinearLayout
             android:id="@+id/wallet_ll"
             android:layout_width="80dp"
             android:layout_height="wrap_content"
@@ -115,7 +115,7 @@
                 android:text="Wallet"
                 android:textColor="@color/white"
                 android:textSize="11sp" />
-        </LinearLayout>
+        </com.qmuiteam.qmui.alpha.QMUIAlphaLinearLayout>
     </LinearLayout>
 
     <LinearLayout
@@ -123,7 +123,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp">
 
-        <LinearLayout
+        <com.qmuiteam.qmui.alpha.QMUIAlphaLinearLayout
             android:id="@+id/message_ll"
             android:layout_width="80dp"
             android:layout_height="wrap_content"
@@ -143,9 +143,9 @@
                 android:text="Message"
                 android:textColor="@color/white"
                 android:textSize="11sp" />
-        </LinearLayout>
+        </com.qmuiteam.qmui.alpha.QMUIAlphaLinearLayout>
 
-        <LinearLayout
+        <com.qmuiteam.qmui.alpha.QMUIAlphaLinearLayout
             android:id="@+id/friend_ll"
             android:layout_width="80dp"
             android:layout_height="wrap_content"
@@ -165,9 +165,9 @@
                 android:text="Friends"
                 android:textColor="@color/white"
                 android:textSize="11sp" />
-        </LinearLayout>
+        </com.qmuiteam.qmui.alpha.QMUIAlphaLinearLayout>
 
-        <LinearLayout
+        <com.qmuiteam.qmui.alpha.QMUIAlphaLinearLayout
             android:id="@+id/drafts_ll"
             android:layout_width="80dp"
             android:layout_height="wrap_content"
@@ -187,7 +187,7 @@
                 android:text="Drafts"
                 android:textColor="@color/white"
                 android:textSize="11sp" />
-        </LinearLayout>
+        </com.qmuiteam.qmui.alpha.QMUIAlphaLinearLayout>
     </LinearLayout>
 
     <LinearLayout
@@ -195,7 +195,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp">
 
-        <LinearLayout
+        <com.qmuiteam.qmui.alpha.QMUIAlphaLinearLayout
             android:id="@+id/certification_ll"
             android:layout_width="80dp"
             android:layout_height="wrap_content"
@@ -215,9 +215,9 @@
                 android:text="Certification"
                 android:textColor="@color/white"
                 android:textSize="11sp" />
-        </LinearLayout>
+        </com.qmuiteam.qmui.alpha.QMUIAlphaLinearLayout>
 
-        <LinearLayout
+        <com.qmuiteam.qmui.alpha.QMUIAlphaLinearLayout
             android:id="@+id/ad_ll"
             android:layout_width="80dp"
             android:layout_height="wrap_content"
@@ -237,9 +237,9 @@
                 android:text="Advertising"
                 android:textColor="@color/white"
                 android:textSize="11sp" />
-        </LinearLayout>
+        </com.qmuiteam.qmui.alpha.QMUIAlphaLinearLayout>
 
-        <LinearLayout
+        <com.qmuiteam.qmui.alpha.QMUIAlphaLinearLayout
             android:id="@+id/group_ll"
             android:layout_width="80dp"
             android:layout_height="wrap_content"
@@ -259,7 +259,7 @@
                 android:text="Group"
                 android:textColor="@color/white"
                 android:textSize="11sp" />
-        </LinearLayout>
+        </com.qmuiteam.qmui.alpha.QMUIAlphaLinearLayout>
     </LinearLayout>
 
     <RelativeLayout
@@ -272,7 +272,7 @@
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="32dp">
 
-            <LinearLayout
+            <com.qmuiteam.qmui.alpha.QMUIAlphaLinearLayout
                 android:id="@+id/setting_ll"
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
@@ -293,7 +293,7 @@
                     android:text="Setting"
                     android:textColor="@color/white"
                     android:textSize="11sp" />
-            </LinearLayout>
+            </com.qmuiteam.qmui.alpha.QMUIAlphaLinearLayout>
 
             <View
                 android:layout_width="80dp"

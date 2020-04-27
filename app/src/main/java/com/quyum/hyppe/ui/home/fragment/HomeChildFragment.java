@@ -724,7 +724,7 @@ public class HomeChildFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 int pos = (int) v.getTag();
-                startActivity(new Intent(mActivity, HashActivity.class));
+                startActivity(new Intent(mActivity, HashActivity.class).putExtra("data", mVideoList.get(pos)));
             }
         };
         forwardOnClickListener = new View.OnClickListener() {

@@ -1,6 +1,7 @@
 package com.quyum.hyppe.weight;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Handler;
 import android.view.Gravity;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.quyum.hyppe.R;
+import com.quyum.hyppe.ui.home.activity.ChangeEmailActivity;
 import com.quyum.hyppe.utils.ToastUtils;
 
 /**
@@ -42,6 +44,43 @@ public class DialogBuilder {
         builder.setCanceledOnTouchOutside(true);
 
         okTv.setOnClickListener(onClickListener);
+        cancelTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                builder.cancel();
+            }
+        });
+        return builder;
+    }
+
+    /**
+     * 选择 dialog
+     *
+     * @param context
+     */
+    public static MyDialog change(final Context context, String email) {
+
+        View view = View.inflate(context, R.layout.dialog_select, null);
+        TextView contentTv = view.findViewById(R.id.content_tv);
+        TextView cancelTv = view.findViewById(R.id.cancel_tv);
+        TextView okTv = view.findViewById(R.id.ok_tv);
+        TextView titleTv = view.findViewById(R.id.title_tv);
+        titleTv.setText("Change your Email?");
+        okTv.setText("Change");
+        cancelTv.setText("Cancel");
+        contentTv.setText("Your current Email is" + email);
+
+        final MyDialog builder = new MyDialog(context, view, R.style.DialogTheme, Gravity.CENTER);
+        builder.setCancelable(true);
+        builder.setCanceledOnTouchOutside(true);
+        builder.show();
+        okTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                builder.dismiss();
+                context.startActivity(new Intent(context, ChangeEmailActivity.class));
+            }
+        });
         cancelTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

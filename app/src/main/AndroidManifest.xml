@@ -217,6 +217,36 @@
         <activity
             android:name=".ui.home.activity.ChangePaymentPasswordActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.home.activity.HowToSwitchAccountActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.home.activity.AboutUsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.home.activity.ReleaseActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.home.activity.SelectLocationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.home.activity.PrivacySettingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.home.activity.SelectDeviceActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.home.activity.DeviceModelActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.home.activity.ScreenWriterActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.home.activity.CastActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.home.activity.OwnershipAuthenticationActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

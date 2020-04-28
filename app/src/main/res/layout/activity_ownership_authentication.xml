@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/them">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="15dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:text="Tittle："
+            android:textColor="@color/white"
+            android:textSize="15sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical">
+
+            <EditText
+                android:id="@+id/title_et"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@null"
+                android:hint="Title of Content"
+                android:textColor="@color/white"
+                android:textColorHint="#49ffffff"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15dp"
+                android:text="*"
+                android:textColor="#EE6028"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:background="#50ffffff" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:text="Content Creator:"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical">
+
+            <EditText
+                android:id="@+id/name_et"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@null"
+                android:hint="Please fill in your real name as stated on your ID Card"
+                android:textColor="@color/white"
+                android:textColorHint="#49ffffff"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15dp"
+                android:text="*"
+                android:textColor="#EE6028"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:background="#50ffffff" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:text="Place of Origin:"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
+
+        <com.qmuiteam.qmui.alpha.QMUIAlphaLinearLayout
+            android:id="@+id/location_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/location_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@null"
+                android:ellipsize="end"
+                android:hint="Location of Content Created"
+                android:maxLines="1"
+                android:textColor="@color/white"
+                android:textColorHint="#49ffffff"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15dp"
+                android:text="*"
+                android:textColor="#EE6028"
+                android:textSize="12sp" />
+        </com.qmuiteam.qmui.alpha.QMUIAlphaLinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:background="#50ffffff" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:text="Date Created："
+            android:textColor="@color/white"
+            android:textSize="15sp" />
+
+        <com.qmuiteam.qmui.alpha.QMUIAlphaLinearLayout
+            android:id="@+id/time_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/time_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@null"
+                android:hint="Time of Content Created"
+                android:textColor="@color/white"
+                android:textColorHint="#49ffffff"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15dp"
+                android:text="*"
+                android:textColor="#EE6028"
+                android:textSize="12sp" />
+        </com.qmuiteam.qmui.alpha.QMUIAlphaLinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:background="#50ffffff" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:text="Production Device:"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
+
+        <com.qmuiteam.qmui.alpha.QMUIAlphaLinearLayout
+            android:id="@+id/select_device_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/select_device_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@null"
+                android:hint="Select Device"
+                android:textColor="@color/white"
+                android:textColorHint="#49ffffff"
+                android:textSize="12sp" />
+        </com.qmuiteam.qmui.alpha.QMUIAlphaLinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:background="#50ffffff" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:text="Device Model:"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
+
+        <com.qmuiteam.qmui.alpha.QMUIAlphaLinearLayout
+            android:id="@+id/device_model_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/device_model_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@null"
+                android:hint="Description of Model"
+                android:textColor="@color/white"
+                android:textColorHint="#49ffffff"
+                android:textSize="12sp" />
+        </com.qmuiteam.qmui.alpha.QMUIAlphaLinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:background="#50ffffff" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:text="Screenwriter:"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
+
+        <com.qmuiteam.qmui.alpha.QMUIAlphaLinearLayout
+            android:id="@+id/screenwriter_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/screenwriter_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@null"
+                android:ellipsize="end"
+                android:hint="Real/Stage Name of Screenwriter(s)"
+                android:maxLines="1"
+                android:textColor="@color/white"
+                android:textColorHint="#49ffffff"
+                android:textSize="12sp" />
+        </com.qmuiteam.qmui.alpha.QMUIAlphaLinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:background="#50ffffff" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:text="Cast:"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
+
+        <com.qmuiteam.qmui.alpha.QMUIAlphaLinearLayout
+            android:id="@+id/cast_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/cast_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@null"
+                android:ellipsize="end"
+                android:hint="Real/Stage Name of Cast(s)"
+                android:maxLines="1"
+                android:textColor="@color/white"
+                android:textColorHint="#49ffffff"
+                android:textSize="12sp" />
+        </com.qmuiteam.qmui.alpha.QMUIAlphaLinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:background="#50ffffff" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:text="Declaration"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/declaration_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="15dp"
+            android:text="Here is the uplink declaration text，Here is the uplink declaration text，Here is the uplink declaration text，Here is the uplink declaration text，Here is the uplink declaration text，Here is the uplink declaration text，Here is the uplink declaration text，Here is the uplink declaration text，Here is the uplink declaration text，Here is the uplink declaration text，Here is the uplink declaration text，Here is the uplink declaration text，Here is the uplink declaration text，Here is the uplink declaration text，Here is the uplink declaration text，Here is the uplink declaration text，Here is the uplink declaration text，Here is the uplink declaration text，Here is the uplink declaration text，Here is the uplink declaration text，Here is the uplink declaration text，Here is the uplink declaration text，Here is the uplink declaration text，Here is the uplink declaration text，Here is the uplink declaration text，Here is the uplink declaration text，Here is the uplink declaration text，Here is the uplink declaration text，Here is the uplink declaration text，Here is the uplink declaration text，Here is the uplink declaration text，Here is the uplink declaration text，Here is the uplink declaration text，Here is the uplink declaration text，Here is the uplink declaration text，Here is the uplink declaration text，"
+            android:textColor="@color/white"
+            android:textSize="12sp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_marginRight="15dp">
+
+            <com.qmuiteam.qmui.alpha.QMUIAlphaButton
+                android:id="@+id/discard_bt"
+                android:layout_width="165dp"
+                android:layout_height="44dp"
+                android:background="@drawable/bg_button_save"
+                android:text="Discard"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <com.qmuiteam.qmui.alpha.QMUIAlphaButton
+                android:id="@+id/agree_bt"
+                android:layout_width="165dp"
+                android:layout_height="44dp"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/bg_button_save"
+                android:text="Agree"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="24dp" />
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

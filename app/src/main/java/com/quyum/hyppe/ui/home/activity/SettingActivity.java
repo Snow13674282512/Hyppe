@@ -64,8 +64,10 @@ public class SettingActivity extends BaseActivity {
                 startActivity(new Intent(mContext, UserAgreementActivity.class));
                 break;
             case R.id.about_ll:
+                startActivity(new Intent(mContext, AboutUsActivity.class));
                 break;
             case R.id.how_to_ll:
+                startActivity(new Intent(mContext, HowToSwitchAccountActivity.class));
                 break;
             case R.id.payment_ll:
                 startActivity(new Intent(mContext, PaymentSettingActivity.class));

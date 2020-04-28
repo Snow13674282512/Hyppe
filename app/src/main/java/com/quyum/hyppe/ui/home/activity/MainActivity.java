@@ -191,6 +191,7 @@ public class MainActivity extends BaseMainActivity {
                 EventBus.getDefault().post(new PlayerStartEvent());
                 break;
             case R.id.publish_iv:
+                startActivity(new Intent(mContext, ReleaseActivity.class));
                 break;
             case R.id.two_ll:
                 viewPager.setCurrentItem(1);

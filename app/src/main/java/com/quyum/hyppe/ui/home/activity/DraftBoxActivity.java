@@ -1,5 +1,6 @@
 package com.quyum.hyppe.ui.home.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -98,6 +99,12 @@ public class DraftBoxActivity extends BaseActivity {
             public void onRefresh() {
                 page = 0;
                 setData();
+            }
+        });
+        adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                startActivity(new Intent(mContext,ReleaseActivity.class));
             }
         });
 

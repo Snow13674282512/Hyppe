@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/them"
+    android:orientation="vertical">
+
+    <com.qmuiteam.qmui.alpha.QMUIAlphaLinearLayout
+        android:id="@+id/public_ll"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
+        android:gravity="center_vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Public"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:text="Visible to public"
+                android:textColor="#50ffffff"
+                android:textSize="10sp" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/public_iv"
+            android:layout_width="12dp"
+            android:layout_height="10dp"
+            android:layout_marginRight="15dp"
+            android:src="@drawable/icon_fabu_sheikeyikan_xuanzhong" />
+    </com.qmuiteam.qmui.alpha.QMUIAlphaLinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="15dp"
+        android:background="#49ffffff" />
+
+    <com.qmuiteam.qmui.alpha.QMUIAlphaLinearLayout
+        android:id="@+id/friends_ll"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
+        android:gravity="center_vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Friends"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:text="Visible to friends"
+                android:textColor="#50ffffff"
+                android:textSize="10sp" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/friends_iv"
+            android:layout_width="12dp"
+            android:layout_height="10dp"
+            android:layout_marginRight="15dp"
+            android:src="@drawable/icon_fabu_sheikeyikan_xuanzhong"
+            android:visibility="gone" />
+    </com.qmuiteam.qmui.alpha.QMUIAlphaLinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="15dp"
+        android:background="#49ffffff" />
+
+    <com.qmuiteam.qmui.alpha.QMUIAlphaLinearLayout
+        android:id="@+id/only_me_ll"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:layout_marginLeft="15dp"
+        android:gravity="center_vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Only me"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:text="Visible to yourself"
+                android:textColor="#50ffffff"
+                android:textSize="10sp" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/only_me_iv"
+            android:layout_width="12dp"
+            android:layout_height="10dp"
+            android:layout_marginRight="15dp"
+            android:src="@drawable/icon_fabu_sheikeyikan_xuanzhong"
+            android:visibility="gone" />
+    </com.qmuiteam.qmui.alpha.QMUIAlphaLinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="15dp"
+        android:background="#49ffffff" />
+</LinearLayout>

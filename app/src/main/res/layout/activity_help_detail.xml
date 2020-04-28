@@ -70,7 +70,7 @@
                     <ImageView
                         android:layout_width="15dp"
                         android:layout_height="15dp"
-                        android:src="@drawable/icon_faq" />
+                        android:src="@drawable/icon_faq_solved" />
 
                     <TextView
                         android:layout_width="wrap_content"

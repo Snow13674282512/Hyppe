@@ -102,6 +102,9 @@ public class EditMineActivity extends BaseActivity {
                 .setSubmitColor(Color.parseColor("#EE6028"))
                 .setTitleColor(Color.parseColor("#333333"))
                 .setTextColorOut(Color.parseColor("#80333333"))
+                .setTitleBgColor(Color.parseColor("#ffffff"))
+                .setCancelText("cancel")//取消按钮文字
+                .setSubmitText("complete")//确认按钮文字
                 .setTitleSize(16)
                 .setSubCalSize(14)
                 .setContentTextSize(16)

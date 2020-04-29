@@ -23,8 +23,18 @@ import com.quyum.hyppe.event.FinishEvent;
 import com.quyum.hyppe.event.HomeLeftEvent;
 import com.quyum.hyppe.event.PlayerStartEvent;
 import com.quyum.hyppe.event.PlayerStopEvent;
-import com.quyum.hyppe.ui.home.fragment.ChannelsFragment;
+import com.quyum.hyppe.ui.advertising.activity.AdvertisingActivity;
+import com.quyum.hyppe.ui.certification.activity.RealNameActivity;
+import com.quyum.hyppe.ui.daily.activity.SignInActivity;
+import com.quyum.hyppe.ui.drafts.activity.DraftBoxActivity;
+import com.quyum.hyppe.ui.gift.activity.GiftHistoryActivity;
+import com.quyum.hyppe.ui.group.activity.GroupActivity;
+import com.quyum.hyppe.ui.channels.fragment.ChannelsFragment;
 import com.quyum.hyppe.ui.home.fragment.HomeFragment;
+import com.quyum.hyppe.ui.mine.activity.MinePageActivity;
+import com.quyum.hyppe.ui.release.activity.ReleaseActivity;
+import com.quyum.hyppe.ui.setting.activity.SettingActivity;
+import com.quyum.hyppe.ui.wallet.activity.WalletActivity;
 import com.quyum.hyppe.weight.TitleBar;
 
 import org.greenrobot.eventbus.EventBus;
@@ -220,6 +230,7 @@ public class MainActivity extends BaseMainActivity {
             case R.id.message_ll:
                 break;
             case R.id.ad_ll:
+                startActivity(new Intent(mContext, AdvertisingActivity.class));
                 break;
             case R.id.group_ll:
                 startActivity(new Intent(mContext, GroupActivity.class));

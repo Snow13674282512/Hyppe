@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/them"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="19dp"
+        android:text="Fill in the position"
+        android:textColor="@color/white"
+        android:textSize="18sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="20dp"
+        android:text="In the area："
+        android:textColor="@color/white"
+        android:textSize="14sp" />
+
+    <com.qmuiteam.qmui.alpha.QMUIAlphaLinearLayout
+        android:id="@+id/location_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginRight="15dp"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/location_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Select location"
+            android:textColor="@color/white"
+            android:textColorHint="#80ffffff"
+            android:textSize="10sp" />
+
+        <ImageView
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:src="@drawable/icon_next" />
+    </com.qmuiteam.qmui.alpha.QMUIAlphaLinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="14dp"
+        android:background="#49ffffff" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="20dp"
+        android:text="Detailed location："
+        android:textColor="@color/white"
+        android:textSize="14sp" />
+
+    <com.qmuiteam.qmui.alpha.QMUIAlphaLinearLayout
+        android:id="@+id/detailed_location_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginRight="15dp"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/detailed_location_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Fill in the detailed position"
+            android:textColor="@color/white"
+            android:textColorHint="#80ffffff"
+            android:textSize="10sp" />
+
+        <ImageView
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:src="@drawable/icon_next" />
+    </com.qmuiteam.qmui.alpha.QMUIAlphaLinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="14dp"
+        android:background="#49ffffff" />
+</LinearLayout>

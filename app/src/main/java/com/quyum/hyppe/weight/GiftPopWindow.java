@@ -9,12 +9,10 @@ import android.widget.Button;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.quyum.hyppe.R;
 import com.quyum.hyppe.ui.home.adapter.PopGiftAdapter;
 import com.quyum.hyppe.ui.home.bean.GiftBean;

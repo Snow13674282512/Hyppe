@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.qmuiteam.qmui.alpha.QMUIAlphaTextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/title_tv"
+    android:layout_width="67dp"
+    android:layout_height="25dp"
+    android:layout_marginRight="10dp"
+    android:background="@drawable/bg_advertising_conditions_select"
+    android:gravity="center"
+    android:text="Unlimited"
+    android:textColor="@color/white"
+    android:textSize="12sp" />

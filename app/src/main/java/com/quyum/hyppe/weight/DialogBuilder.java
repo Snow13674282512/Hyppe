@@ -9,7 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.quyum.hyppe.R;
-import com.quyum.hyppe.ui.home.activity.ChangeEmailActivity;
+import com.quyum.hyppe.ui.setting.activity.ChangeEmailActivity;
 import com.quyum.hyppe.utils.ToastUtils;
 
 /**

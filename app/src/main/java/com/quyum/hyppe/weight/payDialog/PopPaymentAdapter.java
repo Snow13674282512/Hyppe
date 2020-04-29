@@ -5,7 +5,7 @@ import android.text.TextUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.quyum.hyppe.R;
-import com.quyum.hyppe.ui.home.bean.PaymentBean;
+import com.quyum.hyppe.ui.setting.bean.PaymentBean;
 
 /**
  * <pre>

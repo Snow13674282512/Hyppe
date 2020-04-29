@@ -1,7 +1,5 @@
 package com.quyum.hyppe.ui.home.adapter;
 
-import android.graphics.Color;
-
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.quyum.hyppe.R;

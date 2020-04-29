@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.quyum.hyppe.R;
-import com.quyum.hyppe.ui.home.activity.AddBankActivity;
+import com.quyum.hyppe.ui.setting.activity.AddBankActivity;
 import com.quyum.hyppe.weight.payDialog.PopPaymentAdapter;
 
 public class PaymentPopWindow {
@@ -23,6 +23,7 @@ public class PaymentPopWindow {
     private PopPaymentAdapter adapter;
     private View linearLayout;
     private TextView moneyTv;
+    private TextView unitTv;
 
     public PaymentPopWindow(View linearLayout, Context context) {
         this.linearLayout = linearLayout;
@@ -40,9 +41,14 @@ public class PaymentPopWindow {
         customPopWindow.showAtLocation(linearLayout, Gravity.BOTTOM, 0, 0);
     }
 
+    public void setUnit(String unit) {
+        unitTv.setText(unit);
+    }
+
     private void handleNation(View contentView) {
         RecyclerView recyclerView = contentView.findViewById(R.id.recycler_view);
         moneyTv = contentView.findViewById(R.id.money_tv);
+        unitTv = contentView.findViewById(R.id.unit_tv);
         moneyTv.setText(moneyTv.getText().toString().trim());
 
         contentView.findViewById(R.id.cancel_tv).setOnClickListener(new View.OnClickListener() {

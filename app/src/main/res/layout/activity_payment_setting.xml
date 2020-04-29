@@ -59,4 +59,36 @@
             android:layout_marginRight="15dp"
             android:src="@drawable/icon_next" />
     </com.qmuiteam.qmui.alpha.QMUIAlphaLinearLayout>
+
+    <View
+        android:id="@+id/bottom_view"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
+        android:background="#49ffffff" />
+
+    <com.qmuiteam.qmui.alpha.QMUIAlphaLinearLayout
+        android:id="@+id/forget_password_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_weight="1"
+            android:text="Forget Payment Password"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="15dp"
+            android:src="@drawable/icon_next" />
+    </com.qmuiteam.qmui.alpha.QMUIAlphaLinearLayout>
 </LinearLayout>

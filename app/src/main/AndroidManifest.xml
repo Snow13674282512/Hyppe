@@ -113,139 +113,166 @@
             android:name=".ui.home.activity.HashTagActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.home.activity.GroupActivity"
+            android:name=".ui.group.activity.GroupActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.home.activity.GiftHistoryActivity"
+            android:name=".ui.gift.activity.GiftHistoryActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.home.activity.SignInActivity"
+            android:name=".ui.daily.activity.SignInActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.home.activity.SignInRuleActivity"
+            android:name=".ui.daily.activity.SignInRuleActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.home.activity.WalletActivity"
+            android:name=".ui.wallet.activity.WalletActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.home.activity.WalletCreditActivity"
+            android:name=".ui.wallet.activity.WalletCreditActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.home.activity.CreditTopUpActivity"
+            android:name=".ui.wallet.activity.CreditTopUpActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.home.activity.AddBankActivity"
+            android:name=".ui.setting.activity.AddBankActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.home.activity.AddBankNextActivity"
+            android:name=".ui.setting.activity.AddBankNextActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.home.activity.SetPaymentPasswordActivity"
+            android:name=".ui.setting.activity.SetPaymentPasswordActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.home.activity.CreditWithdrawalActivity"
+            android:name=".ui.wallet.activity.CreditWithdrawalActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.home.activity.WalletPointActivity"
+            android:name=".ui.wallet.activity.WalletPointActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.home.activity.PointTopUpActivity"
+            android:name=".ui.wallet.activity.PointTopUpActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.home.activity.PointConversionActivity"
+            android:name=".ui.wallet.activity.PointConversionActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.home.activity.DraftBoxActivity"
+            android:name=".ui.drafts.activity.DraftBoxActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.home.activity.MinePageActivity"
+            android:name=".ui.mine.activity.MinePageActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.home.activity.MineIconActivity"
+            android:name=".ui.mine.activity.MineIconActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.home.activity.EditMineActivity"
+            android:name=".ui.mine.activity.EditMineActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.home.activity.InsertNickNameActivity"
+            android:name=".ui.mine.activity.InsertNickNameActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.home.activity.BioActivity"
+            android:name=".ui.release.activity.BioActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.mine.activity.MineFansActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.mine.activity.MineFollowActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.certification.activity.RealNameActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.certification.activity.CertificationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.setting.activity.SettingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.setting.activity.AccountSecurityActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.setting.activity.ChangeEmailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.setting.activity.ChangePasswordActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.setting.activity.ChangePasswordNextActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.setting.activity.NotificationSettingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.setting.activity.FeedHelpActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.setting.activity.FAQHelpActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.setting.activity.UserAgreementActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.setting.activity.PaymentSettingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.setting.activity.ChangePaymentPasswordActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.setting.activity.HowToSwitchAccountActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.setting.activity.AboutUsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.release.activity.ReleaseActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.release.activity.SelectLocationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.release.activity.PrivacySettingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.release.activity.SelectDeviceActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.release.activity.DeviceModelActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.release.activity.ScreenWriterActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.release.activity.CastActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.release.activity.OwnershipAuthenticationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.setting.activity.ForgetPaymentPasswordActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.advertising.activity.AdvertisingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.advertising.activity.AdvertisingLocationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.advertising.activity.SelectLocationAdvertisingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.advertising.activity.AdvertisingProblemActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.advertising.activity.AdvertisingNextActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.advertising.activity.BudGetTimeActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.home.activity.FansActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.home.activity.FollowActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.home.activity.RealNameActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.home.activity.CertificationActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.home.activity.SettingActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.home.activity.AccountSecurityActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.home.activity.ChangeEmailActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.home.activity.ChangePasswordActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.home.activity.ChangePasswordNextActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.home.activity.NotificationSettingActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.home.activity.FeedHelpActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.home.activity.FAQHelpActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.home.activity.UserAgreementActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.home.activity.PaymentSettingActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.home.activity.ChangePaymentPasswordActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.home.activity.HowToSwitchAccountActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.home.activity.AboutUsActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.home.activity.ReleaseActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.home.activity.SelectLocationActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.home.activity.PrivacySettingActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.home.activity.SelectDeviceActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.home.activity.DeviceModelActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.home.activity.ScreenWriterActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.home.activity.CastActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.home.activity.OwnershipAuthenticationActivity"
             android:screenOrientation="portrait" />
     </application>
 

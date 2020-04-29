@@ -13,8 +13,8 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.quyum.hyppe.R;
 import com.quyum.hyppe.base.BaseActivity;
-import com.quyum.hyppe.ui.home.adapter.FansAdapter;
 import com.quyum.hyppe.ui.home.bean.FansBean;
+import com.quyum.hyppe.ui.mine.adapter.MineFansAdapter;
 import com.quyum.hyppe.utils.CommonUtil;
 import com.quyum.hyppe.weight.TitleBar;
 import com.yanzhenjie.recyclerview.OnItemMenuClickListener;
@@ -34,7 +34,7 @@ public class FollowActivity extends BaseActivity {
     SwipeRefreshLayout swipeRefresh;
     @BindView(R.id.recyclerView)
     SwipeRecyclerView recyclerView;
-    FansAdapter adapter = new FansAdapter();
+    MineFansAdapter adapter = new MineFansAdapter();
     int page = 0;
     TextView noData;
 
@@ -75,8 +75,6 @@ public class FollowActivity extends BaseActivity {
     @Override
     protected void initView() {
         loadingView.setVisibility(View.VISIBLE);
-        recyclerView.setSwipeMenuCreator(swipeMenuCreator);
-        recyclerView.setOnItemMenuClickListener(mMenuItemClickListener);
         recyclerView.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false));
         recyclerView.setAdapter(adapter);
         View eView = LayoutInflater.from(mContext).inflate(R.layout.layout_no_data, null);
@@ -84,49 +82,6 @@ public class FollowActivity extends BaseActivity {
         adapter.setEmptyView(eView);
         setData();
     }
-
-
-    /**
-     * 菜单创建器，在Item要创建菜单的时候调用。
-     */
-    private SwipeMenuCreator swipeMenuCreator = new SwipeMenuCreator() {
-        @Override
-        public void onCreateMenu(SwipeMenu swipeLeftMenu, SwipeMenu swipeRightMenu, int position) {
-
-            // 1. MATCH_PARENT 自适应高度，保持和Item一样高;
-            // 2. 指定具体的高，比如80;
-            // 3. WRAP_CONTENT，自身高度，不推荐;
-            int height = ViewGroup.LayoutParams.MATCH_PARENT;
-
-            // 添加右侧的，如果不添加，则右侧不会出现菜单。
-            {
-                SwipeMenuItem deleteItem = new SwipeMenuItem(mContext).setBackgroundColor(Color.parseColor("#FF3740"))
-                        .setText("Delete")
-                        .setTextColor(Color.WHITE)
-                        .setTextSize(14)
-                        .setWidth(CommonUtil.dip2px(mContext,95))
-                        .setHeight(height);
-                swipeRightMenu.addMenuItem(deleteItem);// 添加菜单到右侧。
-            }
-        }
-    };
-
-    /**
-     * RecyclerView的Item的Menu点击监听。
-     */
-    private OnItemMenuClickListener mMenuItemClickListener = new OnItemMenuClickListener() {
-        @Override
-        public void onItemClick(SwipeMenuBridge menuBridge, int position) {
-            menuBridge.closeMenu();
-
-            int direction = menuBridge.getDirection(); // 左侧还是右侧菜单。
-            int menuPosition = menuBridge.getPosition(); // 菜单在RecyclerView的Item中的Position。
-
-            if (direction == SwipeRecyclerView.RIGHT_DIRECTION) {
-                adapter.remove(position);
-            }
-        }
-    };
 
     @Override
     protected void initData(Bundle savedInstanceState) {

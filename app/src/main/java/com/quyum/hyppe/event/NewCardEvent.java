@@ -1,6 +1,6 @@
 package com.quyum.hyppe.event;
 
-import com.quyum.hyppe.ui.home.bean.PaymentBean;
+import com.quyum.hyppe.ui.setting.bean.PaymentBean;
 
 public class NewCardEvent {
     public PaymentBean.DataBean dataBean;

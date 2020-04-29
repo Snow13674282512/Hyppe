@@ -30,13 +30,13 @@ import com.quyum.hyppe.base.BaseFragment;
 import com.quyum.hyppe.ui.home.adapter.HomePageRecommendAdapter;
 import com.quyum.hyppe.ui.home.bean.HomePageRecommendBean;
 import com.quyum.hyppe.ui.home.fragment.HomePagFragment;
+import com.quyum.hyppe.ui.mine.activity.MineIconActivity;
 import com.quyum.hyppe.weight.TitleBar;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -158,9 +158,15 @@ public class HomePageActivity extends BaseActivity {
         });
     }
 
-    @OnClick({R.id.back_iv, R.id.icon_iv, R.id.focus_iv, R.id.recommended_iv, R.id.follow_bt})
+    @OnClick({R.id.back_iv, R.id.icon_iv, R.id.hypper_ll, R.id.hypping_ll, R.id.focus_iv, R.id.recommended_iv, R.id.follow_bt})
     public void onViewClicked(View view) {
         switch (view.getId()) {
+            case R.id.hypper_ll:
+                startActivity(new Intent(mContext, FansActivity.class));
+                break;
+            case R.id.hypping_ll:
+                startActivity(new Intent(mContext, FollowActivity.class));
+                break;
             case R.id.focus_iv:
                 facusLl.setVisibility(View.GONE);
                 followBt.setVisibility(View.VISIBLE);

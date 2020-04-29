@@ -7,14 +7,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.PopupWindow;
-import android.widget.TextView;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.quyum.hyppe.R;
-import com.quyum.hyppe.ui.home.activity.AddBankActivity;
+import com.quyum.hyppe.ui.setting.activity.AddBankActivity;
 import com.quyum.hyppe.weight.payDialog.PopPaymentAdapter;
 
 public class WithdrawalPopWindow {
